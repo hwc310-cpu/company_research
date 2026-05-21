@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anthropic — 인물 프로필 부록 | 2026.05</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e0c;
+    --paper: #f5f2ec;
+    --cream: #ede9df;
+    --accent: #c8410a;
+    --accent2: #1a4a7a;
+    --gold: #b8892a;
+    --mid: #5a5750;
+    --light: #d4cfc4;
+    --rule: #c8c3b5;
+    --dark-text: #aaa4a0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  /* === MASTHEAD === */
+  .masthead {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 2.5rem 2rem 2rem;
+    border-bottom: 3px solid var(--accent);
+  }
+  .masthead-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 1rem;
+  }
+  .masthead-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .masthead h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+  .masthead h1 em { font-style: italic; color: var(--accent); }
+  .masthead-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--dark-text);
+    text-align: right;
+    line-height: 1.9;
+  }
+
+  /* === NAV === */
+  .nav-strip {
+    background: var(--ink);
+    border-bottom: 1px solid #2a2a2a;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-strip ul {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    list-style: none;
+    overflow-x: auto;
+  }
+  .nav-strip li a {
+    display: block;
+    padding: 0.7rem 1.1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #b5b0a8;
+    text-decoration: none;
+    white-space: nowrap;
+    border-right: 1px solid #2a2a2a;
+    transition: color .15s, background .15s;
+  }
+  .nav-strip li a:hover { color: var(--paper); background: #1a1a1a; }
+
+  /* === LAYOUT === */
+  .page { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+  section { padding: 4rem 0 2.5rem; border-bottom: 1px solid var(--rule); }
+  section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 0.6rem;
+  }
+
+  h3.subsection {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 2rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* === KPI BAND === */
+  .kpi-band {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 2.5rem 1.5rem;
+  }
+  .kpi-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: #2a2a2a;
+    border: 1px solid #2a2a2a;
+  }
+  .kpi-cell {
+    background: var(--ink);
+    padding: 1.5rem 1.2rem;
+  }
+  .kpi-cell:first-child { border-left: 3px solid var(--accent); }
+  .kpi-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--dark-text);
+    margin-bottom: 0.4rem;
+  }
+  .kpi-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--paper);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .kpi-sub { font-size: 11px; color: var(--dark-text); }
+
+  /* === COL LAYOUTS === */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; }
+
+  /* === BODY TEXT === */
+  p { margin-bottom: 0.9rem; color: #2a2825; }
+  p.lead { font-size: 15.5px; line-height: 1.8; margin-bottom: 1rem; }
+
+  /* === CARD === */
+  .card {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 1.4rem 1.6rem;
+  }
+  .card-head {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 0.7rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .card p, .card li { font-size: 14px; line-height: 1.65; color: #2a2825; }
+  .card ul { padding-left: 1rem; }
+  .card li { margin-bottom: 0.45rem; }
+  .card strong { color: var(--ink); font-weight: 600; }
+
+  /* === INSIGHT BOX === */
+  .insight {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 1.4rem 1.7rem;
+    margin: 1.5rem 0;
+    border-left: 4px solid var(--accent);
+  }
+  .insight p { font-size: 14px; line-height: 1.7; color: var(--paper); margin-bottom: 0.5rem; }
+  .insight p:last-child { margin-bottom: 0; }
+  .insight strong { color: #ffb380; font-weight: 600; }
+
+  /* === SPECIAL FINANCIAL NOTE BOX === */
+  .fin-notes {
+    background: #fff8ec;
+    border-left: 4px solid var(--gold);
+    padding: 1.4rem 1.7rem;
+    margin: 1.5rem 0;
+  }
+  .fin-notes h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #7a5a10;
+    margin-bottom: 0.9rem;
+  }
+  .fin-notes p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: #2a2825;
+    margin-bottom: 0.7rem;
+  }
+  .fin-notes p:last-child { margin-bottom: 0; }
+  .fin-notes strong { color: #7a3a06; font-weight: 600; }
+
+  /* === QUOTE === */
+  blockquote {
+    border-left: 3px solid var(--gold);
+    padding: 0.9rem 1.4rem;
+    margin: 1rem 0;
+    background: var(--cream);
+  }
+  blockquote p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: #1a1815;
+    line-height: 1.6;
+    margin-bottom: 0.4rem;
+  }
+  blockquote cite {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--mid);
+    font-style: normal;
+    text-transform: uppercase;
+  }
+
+  /* === TIMELINE === */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px; top: 6px; bottom: 0;
+    width: 1px;
+    background: var(--rule);
+  }
+  .tl-item { position: relative; margin-bottom: 1.5rem; }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -1.7rem;
+    top: 6px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--paper);
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+  .tl-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+  }
+  .tl-title { font-weight: 600; font-size: 14.5px; margin-bottom: 0.3rem; color: var(--ink); }
+  .tl-desc { font-size: 13.5px; color: #2a2825; line-height: 1.6; }
+
+  /* === REVENUE TABLE === */
+  .rev-table { width: 100%; border-collapse: collapse; }
+  .rev-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 2px solid var(--ink);
+  }
+  .rev-table td {
+    padding: 0.75rem 0.8rem;
+    border-bottom: 1px solid var(--rule);
+    font-size: 13.5px;
+    vertical-align: middle;
+    color: var(--ink);
+  }
+  .rev-table tr:last-child td { border-bottom: none; }
+  .rev-bar-cell { width: 45%; }
+  .rev-bar-outer {
+    background: var(--cream);
+    height: 22px;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .rev-bar-inner {
+    height: 100%;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  /* === SWOT === */
+  .swot-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--rule);
+  }
+  .swot-cell {
+    padding: 1.5rem 1.8rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .swot-cell:nth-child(odd) { border-right: 1px solid var(--rule); }
+  .swot-cell:nth-last-child(-n+2) { border-bottom: none; }
+  .swot-head {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .swot-head .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    font-weight: 500;
+  }
+  .tag-s { background: #d4f0e2; color: #0a5e30; }
+  .tag-w { background: #fde8d8; color: #7a2a06; }
+  .tag-o { background: #ddeaf7; color: #0c3a6e; }
+  .tag-t { background: #f5e0e0; color: #6e1010; }
+  .swot-cell ul { list-style: none; padding: 0; }
+  .swot-cell li {
+    font-size: 13px;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed var(--light);
+    color: #2a2825;
+    line-height: 1.55;
+    display: flex;
+    gap: 0.6rem;
+  }
+  .swot-cell li:last-child { border-bottom: none; }
+  .swot-cell li::before { content: "—"; color: var(--light); flex-shrink: 0; }
+
+  /* === PERSON CARD === */
+  .person-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+  .person {
+    border: 1px solid var(--rule);
+    padding: 1.3rem;
+    position: relative;
+    background: var(--paper);
+  }
+  .person::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--accent);
+  }
+  .person-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+    color: var(--ink);
+  }
+  .person-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.7rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .person-prev {
+    font-size: 11.5px;
+    color: var(--mid);
+    margin-bottom: 0.6rem;
+    font-family: 'DM Mono', monospace;
+    line-height: 1.5;
+  }
+  .person p { font-size: 13px; color: #2a2825; line-height: 1.55; }
+  .person.founder::before { background: var(--gold); }
+  .person.clevel::before { background: var(--accent2); }
+
+  /* === ORG CHART === */
+  .org-level { margin-bottom: 1.5rem; }
+  .org-level-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .org-nodes { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .org-node {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 0.5rem 0.9rem;
+    font-size: 12.5px;
+  }
+  .org-node .node-name { font-weight: 600; color: var(--ink); }
+  .org-node .node-role {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    color: var(--mid);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .org-node.ceo-node { border-left: 3px solid var(--accent); }
+  .org-node.founder-node { border-left: 3px solid var(--gold); }
+  .org-node.clevel-node { border-left: 3px solid var(--accent2); }
+  .org-legend {
+    margin-top: 0.7rem;
+    font-size: 11.5px;
+    color: var(--mid);
+  }
+  .org-legend span.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  /* === RETENTION BAR === */
+  .ret-row {
+    display: flex; align-items: center;
+    gap: 1rem; margin-bottom: 0.8rem;
+  }
+  .ret-label { width: 130px; font-size: 13px; flex-shrink: 0; font-weight: 500; }
+  .ret-bar-bg {
+    flex: 1; height: 26px;
+    background: var(--cream);
+    border-radius: 2px; overflow: hidden;
+  }
+  .ret-bar-fill {
+    height: 100%; border-radius: 2px;
+    display: flex; align-items: center;
+    padding-left: 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11.5px; font-weight: 500;
+  }
+  .ret-val { width: 40px; text-align: right; font-size: 13px; font-weight: 600; }
+
+  /* === COMPARISON TABLE === */
+  .comp-table { width: 100%; border-collapse: collapse; }
+  .comp-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-align: left;
+    padding: 0.7rem 0.8rem;
+    border-bottom: 2px solid var(--ink);
+    background: var(--cream);
+  }
+  .comp-table td {
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid var(--rule);
+    font-size: 13px;
+    vertical-align: top;
+    color: var(--ink);
+  }
+  .comp-table td strong { font-weight: 600; }
+  .comp-table tr:hover td { background: var(--cream); }
+
+  /* === TALENT TABLE === */
+  .talent-table { width: 100%; border-collapse: collapse; }
+  .talent-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 2px solid var(--ink);
+  }
+  .talent-table td {
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid var(--rule);
+    font-size: 13px;
+    vertical-align: top;
+    color: var(--ink);
+  }
+  .td-prev { color: var(--mid); font-size: 12.5px; }
+
+  /* === WATCHLIST === */
+  .watch-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+  .watch-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--accent);
+    padding: 1.3rem 1.5rem;
+  }
+  .watch-card h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.9rem;
+  }
+  .watch-card ul { list-style: none; padding: 0; }
+  .watch-card li {
+    font-size: 13px;
+    padding: 0.55rem 0;
+    border-bottom: 1px dashed var(--light);
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .watch-card li:last-child { border-bottom: none; }
+  .watch-card li strong { font-weight: 600; color: var(--accent); }
+
+  /* === PROFILE APPENDIX === */
+  .profile {
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.3rem;
+    page-break-inside: avoid;
+  }
+  .profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid var(--rule);
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .profile-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .profile-role {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .profile-meta {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 0.5rem 1rem;
+    font-size: 13px;
+    margin-bottom: 0.7rem;
+  }
+  .profile-meta dt {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--mid);
+    padding-top: 2px;
+  }
+  .profile-meta dd { margin: 0; font-size: 13px; color: var(--ink); }
+  .profile-sec-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--mid);
+    margin-top: 0.9rem;
+    margin-bottom: 0.4rem;
+    display: block;
+    font-weight: 500;
+  }
+  .career-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 0.4rem;
+  }
+  .career-list li {
+    padding: 0.45rem 0;
+    border-bottom: 1px dotted var(--rule);
+    font-size: 13px;
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 1rem;
+    color: var(--ink);
+  }
+  .career-list li:last-child { border-bottom: none; }
+  .career-list .period {
+    font-family: 'DM Mono', monospace;
+    font-size: 11.5px;
+    color: var(--mid);
+  }
+  .profile a {
+    color: var(--accent2);
+    text-decoration: underline;
+    text-decoration-style: dotted;
+  }
+  .uncertain {
+    background: #fef3d8;
+    padding: 1px 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #6e4a06;
+    font-weight: 500;
+  }
+  .verify {
+    background: #f5e0e0;
+    padding: 1px 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #6e1010;
+    font-weight: 500;
+  }
+
+  /* === FOOTER === */
+  .footer {
+    background: var(--ink);
+    color: var(--dark-text);
+    padding: 2rem 1.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    margin-top: 4rem;
+    line-height: 1.7;
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  @media (max-width: 800px) {
+    .kpi-grid { grid-template-columns: repeat(3, 1fr); }
+    .two-col, .three-col, .person-grid, .watch-grid { grid-template-columns: 1fr; }
+    .swot-grid { grid-template-columns: 1fr; }
+    .swot-cell:nth-child(odd) { border-right: none; }
+    .swot-cell:nth-last-child(-n+2) { border-bottom: 1px solid var(--rule); }
+    .swot-cell:last-child { border-bottom: none; }
+    .masthead-inner { grid-template-columns: 1fr; }
+    .masthead-meta { text-align: left; }
+    .profile-meta { grid-template-columns: 1fr; }
+    .career-list li { grid-template-columns: 1fr; gap: 0.2rem; }
+  }
+  @media (max-width: 500px) {
+    .kpi-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+<style>
+  /* 부록 페이지 전용 추가 스타일 */
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--accent);
+  }
+  .back-link:hover { background: var(--accent); color: var(--paper); }
+  
+  .profile-toc {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 1.5rem 1.8rem;
+    margin-bottom: 2rem;
+  }
+  .profile-toc-head {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .profile-toc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem 1.2rem;
+  }
+  .profile-toc-grid a {
+    font-size: 13.5px;
+    color: var(--ink);
+    text-decoration: none;
+    padding: 0.3rem 0;
+    border-bottom: 1px dotted var(--rule);
+    display: block;
+  }
+  .profile-toc-grid a:hover { color: var(--accent); }
+  .profile-toc-grid a .small {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    color: var(--mid);
+    margin-left: 0.4rem;
+  }
+  @media (max-width: 800px) {
+    .profile-toc-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 500px) {
+    .profile-toc-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- === MASTHEAD === -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <div>
+      <div class="masthead-eyebrow">Appendix · Profiles Database</div>
+      <h1><em>Anthropic</em><br>인물 프로필 부록</h1>
+    </div>
+    <div class="masthead-meta">
+      발행일: 2026.05.20<br>
+      대상: 본문 등장 인물 17명<br>
+      분류: Confidential · 내부 검토용<br>
+      <a href="anthropic_report.html" style="color:var(--accent);">← 본문 리포트로 돌아가기</a>
+    </div>
+  </div>
+</header>
+
+<main class="page" style="padding-top:2rem;">
+
+<a href="anthropic_report.html" class="back-link">← 본문 리포트</a>
+
+<!-- 인물 목록 (TOC) -->
+<div class="profile-toc">
+  <div class="profile-toc-head">📑 인물 목록 — 클릭으로 바로 이동</div>
+  <div class="profile-toc-grid">
+    <a href="#p-dario">Dario Amodei <span class="small">CEO</span></a>
+    <a href="#p-daniela">Daniela Amodei <span class="small">President</span></a>
+    <a href="#p-kaplan">Jared Kaplan <span class="small">CSO</span></a>
+    <a href="#p-clark">Jack Clark <span class="small">Policy</span></a>
+    <a href="#p-mann">Ben Mann <span class="small">Labs</span></a>
+    <a href="#p-sam">Sam McCandlish <span class="small">Chief Architect</span></a>
+    <a href="#p-tom">Tom Brown <span class="small">Chief Compute</span></a>
+    <a href="#p-olah">Chris Olah <span class="small">Interpretability</span></a>
+    <a href="#p-krieger">Mike Krieger <span class="small">Labs 前 CPO</span></a>
+    <a href="#p-rao">Krishna Rao <span class="small">CFO</span></a>
+    <a href="#p-smith">Paul Smith <span class="small">CCO</span></a>
+    <a href="#p-patil">Rahul Patil <span class="small">CTO</span></a>
+    <a href="#p-vora">Ami Vora <span class="small">Head of Product</span></a>
+    <a href="#p-ciauri">Chris Ciauri <span class="small">MD Intl</span></a>
+    <a href="#p-tojo">Hidetoshi Tojo <span class="small">Japan</span></a>
+    <a href="#p-ghose">Irina Ghose <span class="small">India</span></a>
+    <a href="#p-liddell">Chris Liddell <span class="small">Board</span></a>
+    <a href="#p-pritchett">Hannah Pritchett <span class="small">CPO</span></a>
+    <a href="#p-clinton">Jason Clinton <span class="small">CISO</span></a>
+  </div>
+</div>
+
+<p class="lead" style="margin-bottom:1.5rem;">본문 등장 인물의 상세 정보 (생년·학력·경력·LinkedIn). 정보 신뢰도 표기: <span class="uncertain">추정</span> = 단편적 근거 기반 추론 / <span class="verify">확인 불가</span> = 공개 정보로 확인 어려움.</p>
+
+<div class="profile" id="p-dario">
+    <div class="profile-header">
+      <div class="profile-name">Dario Amodei</div>
+      <div class="profile-role">Co-Founder · CEO</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd>1983년, 미국 샌프란시스코</dd>
+      <dt>국적</dt><dd>이탈리아계 미국인 (이탈리아인 부, 유대계 미국인 모)</dd>
+      <dt>관계</dt><dd>Daniela Amodei의 오빠</dd>
+      <dt>LinkedIn</dt><dd><span class="verify">공개 프로필 확인 불가</span> · 개인 사이트: darioamodei.com</dd>
+    </dl>
+    <span class="profile-sec-label">학력</span>
+    <ul class="career-list">
+      <li><span class="period">~2001</span><span>San Francisco Lowell High School 졸업</span></li>
+      <li><span class="period">2001-2003</span><span>California Institute of Technology (Caltech), 물리학 (편입)</span></li>
+      <li><span class="period">~2006</span><span>Stanford University, B.S. Physics</span></li>
+      <li><span class="period">2006-2011</span><span>Princeton University, Ph.D. Biophysics (Hertz Fellow). 학위논문: "Network-Scale Electrophysiology"</span></li>
+      <li><span class="period">2011-2014</span><span>Stanford University School of Medicine, 박사후연구원</span></li>
+    </ul>
+    <span class="profile-sec-label">경력</span>
+    <ul class="career-list">
+      <li><span class="period">2014.11-2015.10</span><span>Baidu, Senior Research Scientist (Deep Speech 2 등)</span></li>
+      <li><span class="period">2015-2016</span><span>Google Brain, Senior Research Scientist</span></li>
+      <li><span class="period">2016-2020</span><span>OpenAI, Research Director → VP of Research (GPT-2, GPT-3, RLHF 공동 발명)</span></li>
+      <li><span class="period">2021.02-현재</span><span>Anthropic, Co-Founder & CEO</span></li>
+    </ul>
+  </div>
+
+  <!-- DANIELA -->
+  <div class="profile" id="p-daniela">
+    <div class="profile-header">
+      <div class="profile-name">Daniela Amodei</div>
+      <div class="profile-role">Co-Founder · President</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd>1987년, 미국 샌프란시스코 (Dario의 동생)</dd>
+      <dt>배우자</dt><dd>Holden Karnofsky (2017년 결혼, Open Philanthropy 공동창업자)</dd>
+      <dt>LinkedIn</dt><dd><span class="verify">공개 프로필 확인 불가</span></dd>
+    </dl>
+    <span class="profile-sec-label">학력</span>
+    <ul class="career-list">
+      <li><span class="period">~2005</span><span>San Francisco Lowell High School</span></li>
+      <li><span class="period">~2009</span><span>University of California, Santa Cruz, B.A. English Literature (Politics, Music 부전공). Summa Cum Laude. 음악 부분 장학생</span></li>
+    </ul>
+    <span class="profile-sec-label">경력</span>
+    <ul class="career-list">
+      <li><span class="period">2010</span><span>University of Maryland IRIS Center, Business Development</span></li>
+      <li><span class="period">~2010-2012</span><span>미국 펜실베니아 하원 선거 캠페인 (Field Director) → Matt Cartwright 하원의원 Communications Manager</span></li>
+      <li><span class="period">2013-2018</span><span>Stripe (초기 멤버) — Risk Program Manager → Risk Manager</span></li>
+      <li><span class="period">2018-2020</span><span>OpenAI, VP of Safety and Policy / VP of People</span></li>
+      <li><span class="period">2021.02-현재</span><span>Anthropic, Co-Founder & President</span></li>
+    </ul>
+  </div>
+
+  <!-- JARED KAPLAN -->
+  <div class="profile" id="p-kaplan">
+    <div class="profile-header">
+      <div class="profile-name">Jared Kaplan</div>
+      <div class="profile-role">Co-Founder · CSO · RSO</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd><span class="verify">출생연도 확인 불가</span></dd>
+      <dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/jared-kaplan-645843213/">linkedin.com/in/jared-kaplan-645843213</a></dd>
+    </dl>
+    <span class="profile-sec-label">학력</span>
+    <ul class="career-list">
+      <li><span class="period">~2005</span><span>Stanford University, B.S. Physics & Mathematics</span></li>
+      <li><span class="period">2005-2009</span><span>Harvard University, Ph.D. Theoretical Physics (Hertz Fellow). 학위논문: "Aspects of Holography" (지도교수: Nima Arkani-Hamed)</span></li>
+    </ul>
+    <span class="profile-sec-label">경력</span>
+    <ul class="career-list">
+      <li><span class="period">2012-현재</span><span>Johns Hopkins University, Associate Professor (현재까지 겸직)</span></li>
+      <li><span class="period">~2019-2020</span><span>OpenAI, 협력 연구 (Scaling Laws, GPT-3, Codex 공헌)</span></li>
+      <li><span class="period">2021-현재</span><span>Anthropic, Co-Founder & CSO (2024.10부터 Responsible Scaling Officer 겸직)</span></li>
+    </ul>
+  </div>
+
+  <!-- JACK CLARK -->
+  <div class="profile" id="p-clark">
+    <div class="profile-header">
+      <div class="profile-name">Jack Clark</div>
+      <div class="profile-role">Co-Founder · Head of Policy</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd>영국 Brighton 출생 <span class="uncertain">출생연도 확인 불가</span></dd>
+      <dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/jack-clark-5a320317/">linkedin.com/in/jack-clark-5a320317</a></dd>
+    </dl>
+    <span class="profile-sec-label">학력</span>
+    <ul class="career-list">
+      <li><span class="period">2009</span><span>University of East Anglia (영국), B.A. English Literature with Creative Writing</span></li>
+    </ul>
+    <span class="profile-sec-label">경력</span>
+    <ul class="career-list">
+      <li><span class="period">~2010s 초</span><span>The Register, Distributed Systems Reporter</span></li>
+      <li><span class="period">~2013-2016</span><span>Bloomberg News, Google/AI Reporter</span></li>
+      <li><span class="period">2016-2020</span><span>OpenAI, Strategy & Communications → Policy Director</span></li>
+      <li><span class="period">2021-현재</span><span>Anthropic, Co-Founder & Head of Policy. 2026.03부터 Anthropic Institute 리드</span></li>
+    </ul>
+    <span class="profile-sec-label">기타</span>
+    <p style="font-size:13px;margin-bottom:0;">"Import AI" 뉴스레터(주 7만 구독), Stanford AI Index 공동위원장, OECD AI 워킹그룹 공동위원장, NAIAC 위원.</p>
+  </div>
+
+  <!-- BEN MANN -->
+  <div class="profile" id="p-mann">
+    <div class="profile-header">
+      <div class="profile-name">Benjamin Mann</div>
+      <div class="profile-role">Co-Founder · Anthropic Labs 공동 리드</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd><span class="verify">출생연도 확인 불가</span></dd>
+      <dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/benjamin-mann">linkedin.com/in/benjamin-mann</a></dd>
+    </dl>
+    <span class="profile-sec-label">학력</span>
+    <ul class="career-list">
+      <li><span class="period">학사</span><span>Columbia University, Computer Science <span class="uncertain">졸업연도 미상</span></span></li>
+    </ul>
+    <span class="profile-sec-label">경력</span>
+    <ul class="career-list">
+      <li><span class="period">초기</span><span>Machine Intelligence Research Institute (MIRI) 등</span></li>
+      <li><span class="period">~2010s 중후반</span><span>Google, Senior Software Engineer (Waze Carpool 등)</span></li>
+      <li><span class="period">~2018-2020</span><span>OpenAI, Member of Technical Staff (GPT-3 핵심 아키텍트)</span></li>
+      <li><span class="period">2021-현재</span><span>Anthropic, Co-Founder & MTS → Product Engineering Tech Lead</span></li>
+      <li><span class="period">2026.01-현재</span><span>Anthropic Labs 공동 리드 (Mike Krieger와 함께)</span></li>
+    </ul>
+  </div>
+
+  <!-- SAM McCANDLISH -->
+  <div class="profile" id="p-sam">
+    <div class="profile-header">
+      <div class="profile-name">Sam McCandlish</div>
+      <div class="profile-role">Co-Founder · Chief Architect (前 CTO)</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd><span class="verify">출생연도 확인 불가</span></dd>
+      <dt>LinkedIn</dt><dd><span class="verify">URL 확인 필요</span></dd>
+    </dl>
+    <span class="profile-sec-label">학력 · 경력 요약</span>
+    <p style="font-size:13px;margin-bottom:0;">이론물리학 박사 (Stanford 또는 동급 추정 <span class="uncertain">정확한 학교 확인 필요</span>). OpenAI 시절 Dario·Jared와 Scaling Laws 논문 공저. 2021 Anthropic 공동창업 후 CTO 역임 → 2025.10 Chief Architect로 이동하여 사전훈련·대규모 모델 훈련 집중. Daniela Amodei 직속 보고.</p>
+  </div>
+
+  <!-- TOM BROWN -->
+  <div class="profile" id="p-tom">
+    <div class="profile-header">
+      <div class="profile-name">Tom Brown</div>
+      <div class="profile-role">Co-Founder · Chief Compute Officer</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd><span class="verify">출생연도 확인 불가</span></dd>
+      <dt>학력</dt><dd>MIT, M.Eng <span class="uncertain">정확한 전공·연도 미상</span></dd>
+      <dt>LinkedIn</dt><dd><span class="verify">URL 확인 필요</span></dd>
+    </dl>
+    <span class="profile-sec-label">경력 요약</span>
+    <p style="font-size:13px;margin-bottom:0;">OpenAI GPT-3 Lead Engineer. "Language Models are Few-Shot Learners" (GPT-3 논문)의 1저자. 2021년 Anthropic 공동창업. 현재 컴퓨팅 인프라·하드웨어 전략 총괄 ($80B 클라우드 협상 핵심).</p>
+  </div>
+
+  <!-- CHRIS OLAH -->
+  <div class="profile" id="p-olah">
+    <div class="profile-header">
+      <div class="profile-name">Chris Olah</div>
+      <div class="profile-role">Co-Founder · Mechanistic Interpretability Lead</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd><span class="verify">출생연도 확인 불가</span></dd>
+      <dt>학력</dt><dd><span class="verify">정규 학위 비공개</span> (독학파로 알려짐)</dd>
+      <dt>LinkedIn</dt><dd><span class="verify">URL 확인 필요</span></dd>
+    </dl>
+    <span class="profile-sec-label">경력 요약</span>
+    <p style="font-size:13px;margin-bottom:0;">Google Brain → OpenAI 거쳐 2021년 Anthropic 공동창업. Distill.pub 공동창업자. AI 해석가능성(Mechanistic Interpretability) 연구의 세계적 권위자. Anthropic 안전 연구의 기술적 핵심. 논문 인용 수 업계 최상위권.</p>
+  </div>
+
+  <!-- MIKE KRIEGER -->
+  <div class="profile" id="p-krieger">
+    <div class="profile-header">
+      <div class="profile-name">Mike Krieger (Michel Krieger)</div>
+      <div class="profile-role">前 CPO → Anthropic Labs 공동 리드</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd>1986년 3월 4일, 브라질 상파울루</dd>
+      <dt>국적</dt><dd>브라질·미국 (2004년 미국 이주)</dd>
+      <dt>배우자</dt><dd>Kaitlyn Trigger (2015년 결혼)</dd>
+      <dt>LinkedIn</dt><dd><span class="verify">공개 프로필 확인 불가</span></dd>
+    </dl>
+    <span class="profile-sec-label">학력</span>
+    <ul class="career-list">
+      <li><span class="period">2004-2008</span><span>Stanford University, B.S. Symbolic Systems</span></li>
+      <li><span class="period">~2008</span><span>Stanford University, M.S. Symbolic Systems</span></li>
+    </ul>
+    <span class="profile-sec-label">경력</span>
+    <ul class="career-list">
+      <li><span class="period">2010-2018</span><span>Instagram, Co-Founder & CTO. 2012년 Facebook에 약 $1B 매각</span></li>
+      <li><span class="period">2020-2024</span><span>Artifact (AI 뉴스 앱) Co-Founder. 2024년 Yahoo 매각</span></li>
+      <li><span class="period">2024.05-2026.01</span><span>Anthropic, Chief Product Officer (CPO)</span></li>
+      <li><span class="period">2026.01-현재</span><span>Anthropic Labs 공동 리드 (MTS, Daniela Amodei 직속)</span></li>
+      <li><span class="period">2025.07-현재</span><span>Figma 이사회 (겸직)</span></li>
+    </ul>
+  </div>
+
+  <!-- KRISHNA RAO -->
+  <div class="profile" id="p-rao">
+    <div class="profile-header">
+      <div class="profile-name">Krishna Rao</div>
+      <div class="profile-role">Chief Financial Officer (2024.5~, 첫 CFO)</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd><span class="verify">출생연도 확인 불가</span> (2005년 학사로 ~40대 초중반 추정)</dd>
+      <dt>국적</dt><dd>인도계 미국인</dd>
+      <dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/krishna-rao-193b613/">linkedin.com/in/krishna-rao-193b613</a></dd>
+    </dl>
+    <span class="profile-sec-label">학력</span>
+    <ul class="career-list">
+      <li><span class="period">2005</span><span>Harvard College, A.B. Economics, Summa Cum Laude</span></li>
+      <li><span class="period">2011</span><span>Yale Law School, J.D.</span></li>
+    </ul>
+    <span class="profile-sec-label">경력</span>
+    <ul class="career-list">
+      <li><span class="period">~2005-2008</span><span>Bain & Company, Strategy Consultant</span></li>
+      <li><span class="period">~2011-2015</span><span>Blackstone, Private Equity Group Principal (NY). Crocs $200M 투자 등 주도</span></li>
+      <li><span class="period">2015-2021</span><span>Airbnb, Finance Director → Global Head of Corporate & Business Development. $10B+ 자금 조달 및 IPO ($47B) 주도</span></li>
+      <li><span class="period">2021-2023</span><span>Cedar (헬스케어 페이먼트), CFO</span></li>
+      <li><span class="period">2023-2024.04</span><span>Fanatics Commerce, CFO</span></li>
+      <li><span class="period">2024.05-현재</span><span>Anthropic, 첫 CFO (Series G $30B 조달 주도)</span></li>
+    </ul>
+  </div>
+
+  <!-- PAUL SMITH -->
+  <div class="profile" id="p-smith">
+    <div class="profile-header">
+      <div class="profile-name">Paul Smith</div>
+      <div class="profile-role">Chief Commercial Officer (2025.8~, 첫 CCO)</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd><span class="verify">출생연도 확인 불가</span> (30년 경력 → 50대 추정)</dd>
+      <dt>국적</dt><dd>영국 (현재 뉴욕 거주)</dd>
+      <dt>LinkedIn</dt><dd><span class="verify">URL 확인 필요</span></dd>
+    </dl>
+    <span class="profile-sec-label">학력</span>
+    <ul class="career-list">
+      <li><span class="period">학사</span><span>University of Plymouth (영국), Geography (Climate Change 전공) <span class="uncertain">졸업연도 미상</span></span></li>
+    </ul>
+    <span class="profile-sec-label">경력</span>
+    <ul class="career-list">
+      <li><span class="period">초기</span><span>Procter & Gamble, Morse, Yospace, Microsoft, Umee, Techlightenment</span></li>
+      <li><span class="period">2012.03-2020.07</span><span>Salesforce, EVP UK GM → EVP EMEA (Marketing Cloud 등)</span></li>
+      <li><span class="period">2020.07-2025.09</span><span>ServiceNow, President Global Customer & Field Ops → CCO → Special Advisor. $4B → $12B+ 견인</span></li>
+      <li><span class="period">2025.08-현재</span><span>Anthropic, 첫 CCO (Sales, Partnerships, Revenue Ops, Marketing 총괄)</span></li>
+    </ul>
+  </div>
+
+  <!-- RAHUL PATIL -->
+  <div class="profile" id="p-patil">
+    <div class="profile-header">
+      <div class="profile-name">Rahul Patil</div>
+      <div class="profile-role">Chief Technology Officer (2025.10~)</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd>인도 Bengaluru 태생 <span class="verify">출생연도 확인 불가</span></dd>
+      <dt>LinkedIn</dt><dd><span class="verify">URL 확인 필요</span></dd>
+    </dl>
+    <span class="profile-sec-label">학력</span>
+    <ul class="career-list">
+      <li><span class="period">학사</span><span>PES University (인도 Bengaluru), B.S. Computer Science</span></li>
+      <li><span class="period">석사</span><span>Arizona State University, M.S. <span class="uncertain">전공 미상</span></span></li>
+      <li><span class="period">MBA</span><span>University of Washington, Foster School of Business, MBA</span></li>
+    </ul>
+    <span class="profile-sec-label">경력</span>
+    <ul class="career-list">
+      <li><span class="period">초기</span><span>Microsoft Azure, Engineering Lead</span></li>
+      <li><span class="period">~2010s 초</span><span>Amazon Web Services (AWS), Senior Engineering Leader</span></li>
+      <li><span class="period">2015.07-2020.03</span><span>Oracle Cloud Infrastructure, Senior Vice President</span></li>
+      <li><span class="period">2020-2025.09</span><span>Stripe, CTO (Global Engineering & Operations)</span></li>
+      <li><span class="period">2025.10-현재</span><span>Anthropic, CTO (Compute, Infrastructure, Inference, Product Engineering 총괄)</span></li>
+    </ul>
+  </div>
+
+  <!-- AMI VORA -->
+  <div class="profile" id="p-vora">
+    <div class="profile-header">
+      <div class="profile-name">Ami Vora</div>
+      <div class="profile-role">Head of Product (2026.1~)</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd><span class="verify">출생연도 확인 불가</span></dd>
+      <dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/amvora/">linkedin.com/in/amvora</a></dd>
+    </dl>
+    <span class="profile-sec-label">학력</span>
+    <ul class="career-list">
+      <li><span class="period">학사</span><span>Harvard University, B.A. Computer Science <span class="uncertain">졸업연도 미상</span></span></li>
+    </ul>
+    <span class="profile-sec-label">경력</span>
+    <ul class="career-list">
+      <li><span class="period">초기</span><span>Microsoft, Developer Tools 담당으로 커리어 시작</span></li>
+      <li><span class="period">2007-2022</span><span>Facebook/Meta 15년 — PR 인턴 → Facebook Mobile / Ads VP → WhatsApp VP of Product & Design (20억+ 유저)</span></li>
+      <li><span class="period">2022-~2024</span><span>Faire, Chief Product Officer (CPO)</span></li>
+      <li><span class="period">~2024-2025</span><span>약 1년 안식년</span></li>
+      <li><span class="period">2026.01-현재</span><span>Anthropic, Head of Product</span></li>
+      <li><span class="period">2025~</span><span>Datadog 이사회 (겸직)</span></li>
+    </ul>
+  </div>
+
+  <!-- CHRIS CIAURI -->
+  <div class="profile" id="p-ciauri">
+    <div class="profile-header">
+      <div class="profile-name">Chris Ciauri</div>
+      <div class="profile-role">Managing Director, International (2025.10~)</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd><span class="verify">출생연도 확인 불가</span> (25년+ 경력 → 50대 추정)</dd>
+      <dt>거주지</dt><dd>영국</dd>
+      <dt>LinkedIn</dt><dd><a href="https://uk.linkedin.com/in/cciauri">uk.linkedin.com/in/cciauri</a></dd>
+    </dl>
+    <span class="profile-sec-label">학력</span>
+    <ul class="career-list">
+      <li><span class="period">대학원</span><span>Thunderbird School of Global Management (ASU 산하) <span class="uncertain">졸업연도 미상</span></span></li>
+    </ul>
+    <span class="profile-sec-label">경력</span>
+    <ul class="career-list">
+      <li><span class="period">초기</span><span>PeopleSoft (現 Oracle), E.piphany, Adobe — 시니어 리더십</span></li>
+      <li><span class="period">중간</span><span>Valen Technologies, Hydropoint Data Systems — 스타트업 리더십</span></li>
+      <li><span class="period">~2010-2020</span><span>Salesforce, EVP & GM EMEA (10년). EMEA 매출 $200M → $3B+ 성장 견인. 직원 300명 → 6,000명+</span></li>
+      <li><span class="period">~2021-2023</span><span>Google Cloud, President of EMEA (런던·더블린)</span></li>
+      <li><span class="period">2023.06-2025</span><span>Unily (영국 사내 직원경험 플랫폼), CEO</span></li>
+      <li><span class="period">2025.10-현재</span><span>Anthropic, MD International</span></li>
+    </ul>
+  </div>
+
+  <!-- HIDETOSHI TOJO -->
+  <div class="profile" id="p-tojo">
+    <div class="profile-header">
+      <div class="profile-name">Hidetoshi Tojo (東城 秀俊)</div>
+      <div class="profile-role">Head of Japan / 대표집행역사장 (2025.11~)</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd><span class="verify">출생연도 확인 불가</span> (1996년 사회 진출 → 50대 초중반 추정)</dd>
+      <dt>거주지</dt><dd>일본 도쿄</dd>
+      <dt>LinkedIn / X</dt><dd>X: @HidetoshiTojo</dd>
+    </dl>
+    <span class="profile-sec-label">학력</span>
+    <ul class="career-list">
+      <li><span class="period">2011-2013</span><span>University of Washington, Foster School of Business, MBA</span></li>
+      <li><span class="period">학사</span><span><span class="verify">학사 학교 확인 불가</span></span></li>
+    </ul>
+    <span class="profile-sec-label">경력</span>
+    <ul class="career-list">
+      <li><span class="period">1996~</span><span>JustSystems, Sales (커리어 시작) <span class="uncertain">정확한 연도 미상</span></span></li>
+      <li><span class="period">중간</span><span>Microsoft (US 본사 및 일본 법인), Sales & Marketing 장기 재직</span></li>
+      <li><span class="period">중간</span><span>Google Cloud Japan, 리더십</span></li>
+      <li><span class="period">~2020-2025</span><span>Snowflake Japan, Country Manager / President (런칭부터 성장 주도)</span></li>
+      <li><span class="period">2025.11-현재</span><span>Anthropic Japan, Head of Japan / 대표집행역사장</span></li>
+    </ul>
+  </div>
+
+  <!-- IRINA GHOSE -->
+  <div class="profile" id="p-ghose">
+    <div class="profile-header">
+      <div class="profile-name">Irina Ghose</div>
+      <div class="profile-role">Managing Director, India (2026.1~)</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd><span class="verify">출생연도 확인 불가</span> (Microsoft 2001년 입사 → 50대 추정)</dd>
+      <dt>거주지</dt><dd>인도 Bengaluru</dd>
+      <dt>LinkedIn</dt><dd><span class="verify">URL 확인 필요</span></dd>
+    </dl>
+    <span class="profile-sec-label">학력</span>
+    <ul class="career-list">
+      <li><span class="period">학사</span><span>Indian Institute of Technology BHU (Varanasi), B.Tech Electrical Engineering</span></li>
+      <li><span class="period">MBA</span><span>XLRI Jamshedpur (Xavier School of Management), MBA Business Management</span></li>
+    </ul>
+    <span class="profile-sec-label">경력</span>
+    <ul class="career-list">
+      <li><span class="period">2001-2025.12</span><span>Microsoft India 24년 재직. Partnerships → Account Management → Enterprise Solutions → Microsoft Redmond 본사 stint → COO India (2022) → Managing Director India (2023.07-2025.12)</span></li>
+      <li><span class="period">2026.01-현재</span><span>Anthropic India, Managing Director (Bengaluru 첫 오피스 개설)</span></li>
+      <li><span class="period">기타</span><span>MyLittleBit 재단 설립 (소외 여아 STEM 교육)</span></li>
+    </ul>
+  </div>
+
+  <!-- CHRIS LIDDELL -->
+  <div class="profile" id="p-liddell">
+    <div class="profile-header">
+      <div class="profile-name">Chris Liddell (Christopher Pell Liddell)</div>
+      <div class="profile-role">Board of Directors (2026.2~)</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd>1958년 4월 24일, 뉴질랜드 Matamata</dd>
+      <dt>국적</dt><dd>미국·뉴질랜드 (이중국적)</dd>
+      <dt>배우자</dt><dd>Renee Harbers Liddell (2011년 결혼)</dd>
+      <dt>LinkedIn</dt><dd><span class="verify">공개 프로필 확인 불가</span> · 개인 사이트: chrisliddell.com</dd>
+    </dl>
+    <span class="profile-sec-label">학력</span>
+    <ul class="career-list">
+      <li><span class="period">~1980</span><span>University of Auckland (뉴질랜드), Bachelor of Engineering (with Honours)</span></li>
+      <li><span class="period">~1982</span><span>Worcester College, Oxford University, M.Phil</span></li>
+      <li><span class="period">현재</span><span>Oxford University, Ph.D. 진행 중</span></li>
+    </ul>
+    <span class="profile-sec-label">경력</span>
+    <ul class="career-list">
+      <li><span class="period">~1990s</span><span>CS First Boston (뉴질랜드), Managing Director</span></li>
+      <li><span class="period">1995-1998</span><span>Carter Holt Harvey (NZ 산림제품), CFO</span></li>
+      <li><span class="period">1999-2002</span><span>Carter Holt Harvey, CEO</span></li>
+      <li><span class="period">2003-2005</span><span>International Paper (미국), CFO</span></li>
+      <li><span class="period">2005-2009.12</span><span>Microsoft, SVP & CFO. ~50건 M&A 주도</span></li>
+      <li><span class="period">2010-2011</span><span>General Motors, Vice Chairman & CFO. GM의 역사적 $23B IPO 주도</span></li>
+      <li><span class="period">2014-2017</span><span>WME-IMG, CFO</span></li>
+      <li><span class="period">2017-2021.01</span><span>백악관 (트럼프 1기): Asst to the President for Strategic Initiatives → American Technology Council Director → Deputy Chief of Staff for Policy Coordination (2018.03~)</span></li>
+      <li><span class="period">2026.02-현재</span><span>Anthropic, Board of Directors</span></li>
+      <li><span class="period">기타 현재</span><span>Commonwealth Fusion Systems 이사, KKR Senior Adviser, Harvard IOP Fellow (2026 봄)</span></li>
+    </ul>
+  </div>
+
+  <!-- HANNAH PRITCHETT -->
+  <div class="profile" id="p-pritchett">
+    <div class="profile-header">
+      <div class="profile-name">Hannah Pritchett</div>
+      <div class="profile-role">Chief People Officer</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>전체 정보</dt><dd><span class="verify">공개 정보 매우 제한적 — 학력·경력·LinkedIn 모두 확인 불가</span></dd>
+    </dl>
+    <p style="font-size:13px;margin-top:0.8rem;margin-bottom:0;">RocketReach 등 비즈니스 데이터베이스에 Anthropic CPO로만 식별. 외부 인터뷰·언론 노출 매우 적음. 정확한 프로필 확인을 위해서는 Anthropic 인사이드 컨택 또는 유료 데이터베이스(The Information Org Chart 등) 활용 필요.</p>
+  </div>
+
+  <!-- JASON CLINTON -->
+  <div class="profile" id="p-clinton">
+    <div class="profile-header">
+      <div class="profile-name">Jason Clinton</div>
+      <div class="profile-role">Chief Information Security Officer</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>경력</dt><dd>Google 출신 보안 전문가 <span class="uncertain">상세 경력 확인 필요</span></dd>
+      <dt>LinkedIn</dt><dd><span class="verify">URL 확인 필요</span></dd>
+    </dl>
+    <p style="font-size:13px;margin-top:0.8rem;margin-bottom:0;">Anthropic 공식 발표 및 보안 컨퍼런스 등을 통해 CISO로 식별. Claude Security 제품 라인 출시 주도 (DoorDash 등 도입). 상세 학력·경력은 추가 조사 필요.</p>
+  </div>
+
+
+
+<a href="anthropic_report.html" class="back-link" style="margin-top:2rem;">← 본문 리포트</a>
+
+</main>
+
+<!-- === FOOTER === -->
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Anthropic Strategic Intelligence Report · 부록 · 2026.05.20</span>
+    <span>Sources: Anthropic 공식, Wikipedia, LinkedIn, Hertz Foundation 등</span>
+    <span>Confidential · 내부 검토용</span>
+  </div>
+</footer>
+
+</body>
+</html>
