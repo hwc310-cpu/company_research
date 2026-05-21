@@ -1,0 +1,2091 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anthropic — Strategic Intelligence Report 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e0c;
+    --paper: #f5f2ec;
+    --cream: #ede9df;
+    --accent: #c8410a;
+    --accent2: #1a4a7a;
+    --gold: #b8892a;
+    --mid: #5a5750;
+    --light: #d4cfc4;
+    --rule: #c8c3b5;
+    --dark-text: #aaa4a0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  /* === MASTHEAD === */
+  .masthead {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 2.5rem 2rem 2rem;
+    border-bottom: 3px solid var(--accent);
+  }
+  .masthead-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 1rem;
+  }
+  .masthead-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .masthead h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+  .masthead h1 em { font-style: italic; color: var(--accent); }
+  .masthead-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--dark-text);
+    text-align: right;
+    line-height: 1.9;
+  }
+
+  /* === NAV === */
+  .nav-strip {
+    background: var(--ink);
+    border-bottom: 1px solid #2a2a2a;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-strip ul {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    list-style: none;
+    overflow-x: auto;
+  }
+  .nav-strip li a {
+    display: block;
+    padding: 0.7rem 1.1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #b5b0a8;
+    text-decoration: none;
+    white-space: nowrap;
+    border-right: 1px solid #2a2a2a;
+    transition: color .15s, background .15s;
+  }
+  .nav-strip li a:hover { color: var(--paper); background: #1a1a1a; }
+
+  /* === LAYOUT === */
+  .page { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+  section { padding: 4rem 0 2.5rem; border-bottom: 1px solid var(--rule); }
+  section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 0.6rem;
+  }
+
+  h3.subsection {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 2rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* === KPI BAND === */
+  .kpi-band {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 2.5rem 1.5rem;
+  }
+  .kpi-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: #2a2a2a;
+    border: 1px solid #2a2a2a;
+  }
+  .kpi-cell {
+    background: var(--ink);
+    padding: 1.5rem 1.2rem;
+  }
+  .kpi-cell:first-child { border-left: 3px solid var(--accent); }
+  .kpi-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--dark-text);
+    margin-bottom: 0.4rem;
+  }
+  .kpi-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--paper);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .kpi-sub { font-size: 11px; color: var(--dark-text); }
+
+  /* === COL LAYOUTS === */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; }
+
+  /* === BODY TEXT === */
+  p { margin-bottom: 0.9rem; color: #2a2825; }
+  p.lead { font-size: 15.5px; line-height: 1.8; margin-bottom: 1rem; }
+
+  /* === CARD === */
+  .card {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 1.4rem 1.6rem;
+  }
+  .card-head {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 0.7rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .card p, .card li { font-size: 14px; line-height: 1.65; color: #2a2825; }
+  .card ul { padding-left: 1rem; }
+  .card li { margin-bottom: 0.45rem; }
+  .card strong { color: var(--ink); font-weight: 600; }
+
+  /* === INSIGHT BOX === */
+  .insight {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 1.4rem 1.7rem;
+    margin: 1.5rem 0;
+    border-left: 4px solid var(--accent);
+  }
+  .insight p { font-size: 14px; line-height: 1.7; color: var(--paper); margin-bottom: 0.5rem; }
+  .insight p:last-child { margin-bottom: 0; }
+  .insight strong { color: #ffb380; font-weight: 600; }
+
+  /* === SPECIAL FINANCIAL NOTE BOX === */
+  .fin-notes {
+    background: #fff8ec;
+    border-left: 4px solid var(--gold);
+    padding: 1.4rem 1.7rem;
+    margin: 1.5rem 0;
+  }
+  .fin-notes h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #7a5a10;
+    margin-bottom: 0.9rem;
+  }
+  .fin-notes p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: #2a2825;
+    margin-bottom: 0.7rem;
+  }
+  .fin-notes p:last-child { margin-bottom: 0; }
+  .fin-notes strong { color: #7a3a06; font-weight: 600; }
+
+  /* === QUOTE === */
+  blockquote {
+    border-left: 3px solid var(--gold);
+    padding: 0.9rem 1.4rem;
+    margin: 1rem 0;
+    background: var(--cream);
+  }
+  blockquote p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: #1a1815;
+    line-height: 1.6;
+    margin-bottom: 0.4rem;
+  }
+  blockquote cite {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--mid);
+    font-style: normal;
+    text-transform: uppercase;
+  }
+
+  /* === TIMELINE === */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px; top: 6px; bottom: 0;
+    width: 1px;
+    background: var(--rule);
+  }
+  .tl-item { position: relative; margin-bottom: 1.5rem; }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -1.7rem;
+    top: 6px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--paper);
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+  .tl-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+  }
+  .tl-title { font-weight: 600; font-size: 14.5px; margin-bottom: 0.3rem; color: var(--ink); }
+  .tl-desc { font-size: 13.5px; color: #2a2825; line-height: 1.6; }
+
+  /* === REVENUE TABLE === */
+  .rev-table { width: 100%; border-collapse: collapse; }
+  .rev-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 2px solid var(--ink);
+  }
+  .rev-table td {
+    padding: 0.75rem 0.8rem;
+    border-bottom: 1px solid var(--rule);
+    font-size: 13.5px;
+    vertical-align: middle;
+    color: var(--ink);
+  }
+  .rev-table tr:last-child td { border-bottom: none; }
+  .rev-bar-cell { width: 45%; }
+  .rev-bar-outer {
+    background: var(--cream);
+    height: 22px;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .rev-bar-inner {
+    height: 100%;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  /* === SWOT === */
+  .swot-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--rule);
+  }
+  .swot-cell {
+    padding: 1.5rem 1.8rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .swot-cell:nth-child(odd) { border-right: 1px solid var(--rule); }
+  .swot-cell:nth-last-child(-n+2) { border-bottom: none; }
+  .swot-head {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .swot-head .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    font-weight: 500;
+  }
+  .tag-s { background: #d4f0e2; color: #0a5e30; }
+  .tag-w { background: #fde8d8; color: #7a2a06; }
+  .tag-o { background: #ddeaf7; color: #0c3a6e; }
+  .tag-t { background: #f5e0e0; color: #6e1010; }
+  .swot-cell ul { list-style: none; padding: 0; }
+  .swot-cell li {
+    font-size: 13px;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed var(--light);
+    color: #2a2825;
+    line-height: 1.55;
+    display: flex;
+    gap: 0.6rem;
+  }
+  .swot-cell li:last-child { border-bottom: none; }
+  .swot-cell li::before { content: "—"; color: var(--light); flex-shrink: 0; }
+
+  /* === PERSON CARD === */
+  .person-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+  .person {
+    border: 1px solid var(--rule);
+    padding: 1.3rem;
+    position: relative;
+    background: var(--paper);
+  }
+  .person::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--accent);
+  }
+  .person-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+    color: var(--ink);
+  }
+  .person-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.7rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .person-prev {
+    font-size: 11.5px;
+    color: var(--mid);
+    margin-bottom: 0.6rem;
+    font-family: 'DM Mono', monospace;
+    line-height: 1.5;
+  }
+  .person p { font-size: 13px; color: #2a2825; line-height: 1.55; }
+  .person.founder::before { background: var(--gold); }
+  .person.clevel::before { background: var(--accent2); }
+
+  /* === ORG CHART === */
+  .org-level { margin-bottom: 1.5rem; }
+  .org-level-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .org-nodes { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .org-node {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 0.5rem 0.9rem;
+    font-size: 12.5px;
+  }
+  .org-node .node-name { font-weight: 600; color: var(--ink); }
+  .org-node .node-role {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    color: var(--mid);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .org-node.ceo-node { border-left: 3px solid var(--accent); }
+  .org-node.founder-node { border-left: 3px solid var(--gold); }
+  .org-node.clevel-node { border-left: 3px solid var(--accent2); }
+  .org-legend {
+    margin-top: 0.7rem;
+    font-size: 11.5px;
+    color: var(--mid);
+  }
+  .org-legend span.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  /* === RETENTION BAR === */
+  .ret-row {
+    display: flex; align-items: center;
+    gap: 1rem; margin-bottom: 0.8rem;
+  }
+  .ret-label { width: 130px; font-size: 13px; flex-shrink: 0; font-weight: 500; }
+  .ret-bar-bg {
+    flex: 1; height: 26px;
+    background: var(--cream);
+    border-radius: 2px; overflow: hidden;
+  }
+  .ret-bar-fill {
+    height: 100%; border-radius: 2px;
+    display: flex; align-items: center;
+    padding-left: 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11.5px; font-weight: 500;
+  }
+  .ret-val { width: 40px; text-align: right; font-size: 13px; font-weight: 600; }
+
+  /* === COMPARISON TABLE === */
+  .comp-table { width: 100%; border-collapse: collapse; }
+  .comp-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-align: left;
+    padding: 0.7rem 0.8rem;
+    border-bottom: 2px solid var(--ink);
+    background: var(--cream);
+  }
+  .comp-table td {
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid var(--rule);
+    font-size: 13px;
+    vertical-align: top;
+    color: var(--ink);
+  }
+  .comp-table td strong { font-weight: 600; }
+  .comp-table tr:hover td { background: var(--cream); }
+
+  /* === TALENT TABLE === */
+  .talent-table { width: 100%; border-collapse: collapse; }
+  .talent-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 2px solid var(--ink);
+  }
+  .talent-table td {
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid var(--rule);
+    font-size: 13px;
+    vertical-align: top;
+    color: var(--ink);
+  }
+  .td-prev { color: var(--mid); font-size: 12.5px; }
+
+  /* === WATCHLIST === */
+  .watch-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+  .watch-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--accent);
+    padding: 1.3rem 1.5rem;
+  }
+  .watch-card h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.9rem;
+  }
+  .watch-card ul { list-style: none; padding: 0; }
+  .watch-card li {
+    font-size: 13px;
+    padding: 0.55rem 0;
+    border-bottom: 1px dashed var(--light);
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .watch-card li:last-child { border-bottom: none; }
+  .watch-card li strong { font-weight: 600; color: var(--accent); }
+
+  /* === PROFILE APPENDIX === */
+  .profile {
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.3rem;
+    page-break-inside: avoid;
+  }
+  .profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid var(--rule);
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .profile-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .profile-role {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .profile-meta {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 0.5rem 1rem;
+    font-size: 13px;
+    margin-bottom: 0.7rem;
+  }
+  .profile-meta dt {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--mid);
+    padding-top: 2px;
+  }
+  .profile-meta dd { margin: 0; font-size: 13px; color: var(--ink); }
+  .profile-sec-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--mid);
+    margin-top: 0.9rem;
+    margin-bottom: 0.4rem;
+    display: block;
+    font-weight: 500;
+  }
+  .career-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 0.4rem;
+  }
+  .career-list li {
+    padding: 0.45rem 0;
+    border-bottom: 1px dotted var(--rule);
+    font-size: 13px;
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 1rem;
+    color: var(--ink);
+  }
+  .career-list li:last-child { border-bottom: none; }
+  .career-list .period {
+    font-family: 'DM Mono', monospace;
+    font-size: 11.5px;
+    color: var(--mid);
+  }
+  .profile a {
+    color: var(--accent2);
+    text-decoration: underline;
+    text-decoration-style: dotted;
+  }
+  .uncertain {
+    background: #fef3d8;
+    padding: 1px 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #6e4a06;
+    font-weight: 500;
+  }
+  .verify {
+    background: #f5e0e0;
+    padding: 1px 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #6e1010;
+    font-weight: 500;
+  }
+
+  /* === FOOTER === */
+  .footer {
+    background: var(--ink);
+    color: var(--dark-text);
+    padding: 2rem 1.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    margin-top: 4rem;
+    line-height: 1.7;
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  @media (max-width: 800px) {
+    .kpi-grid { grid-template-columns: repeat(3, 1fr); }
+    .two-col, .three-col, .person-grid, .watch-grid { grid-template-columns: 1fr; }
+    .swot-grid { grid-template-columns: 1fr; }
+    .swot-cell:nth-child(odd) { border-right: none; }
+    .swot-cell:nth-last-child(-n+2) { border-bottom: 1px solid var(--rule); }
+    .swot-cell:last-child { border-bottom: none; }
+    .masthead-inner { grid-template-columns: 1fr; }
+    .masthead-meta { text-align: left; }
+    .profile-meta { grid-template-columns: 1fr; }
+    .career-list li { grid-template-columns: 1fr; gap: 0.2rem; }
+  }
+  @media (max-width: 500px) {
+    .kpi-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- === MASTHEAD === -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <div>
+      <div class="masthead-eyebrow">Market Intelligence Report · No. 001</div>
+      <h1><em>Anthropic</em><br>기업 인텔리전스 분석</h1>
+    </div>
+    <div class="masthead-meta">
+      발행일: 2026.05.20<br>
+      기준 데이터: 2021–2026.04<br>
+      분석 범위: 재무 · 경쟁 · 조직 · 리더십<br>
+      분류: Confidential · 내부 검토용
+    </div>
+  </div>
+</header>
+
+<!-- === STICKY NAV === -->
+<nav class="nav-strip">
+  <ul>
+    <li><a href="#exec">Executive Summary</a></li>
+    <li><a href="#financials">재무 현황</a></li>
+    <li><a href="#history">회사 약사</a></li>
+    <li><a href="#recent">최근 변화</a></li>
+    <li><a href="#leadership">리더십 & 조직</a></li>
+    <li><a href="#talent">인재 전략</a></li>
+    <li><a href="#competitive">경쟁 · SWOT</a></li>
+    <li><a href="#watchlist">Watchlist</a></li>
+    <li><a href="#profiles">프로필 부록</a></li>
+  </ul>
+</nav>
+
+<!-- === KPI BAND === -->
+<div class="kpi-band">
+  <div class="kpi-grid">
+    <div class="kpi-cell">
+      <div class="kpi-label">ARR (2026.4)</div>
+      <div class="kpi-val">$30B+</div>
+      <div class="kpi-sub">80× growth in 16개월</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">기업 가치</div>
+      <div class="kpi-val">$380B</div>
+      <div class="kpi-sub">Series G, 2026.2</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">누적 투자유치</div>
+      <div class="kpi-val">$22.6B+</div>
+      <div class="kpi-sub">Amazon $8B 포함</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">인당 매출 (RPE)</div>
+      <div class="kpi-val">$14M</div>
+      <div class="kpi-sub">업계 최고 (Epoch AI)</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">직원 유지율</div>
+      <div class="kpi-val">80%</div>
+      <div class="kpi-sub">2년 기준, 업계 1위</div>
+    </div>
+  </div>
+</div>
+
+<main class="page">
+
+<!-- === SECTION 1: EXEC SUMMARY === -->
+<section id="exec">
+  <div class="section-label">Section 01</div>
+  <h2 class="section-title">Executive Summary</h2>
+  <div class="two-col">
+    <div>
+      <p class="lead">Anthropic은 2021년 2월 OpenAI 핵심 연구진 7인이 분사해 설립한 AI 안전·연구 기업이다. "Safety-first AI"를 미션으로 내걸되 동시에 현존 가장 빠른 매출 성장 궤적을 그리고 있다. 2026년 4월 기준 연간 반복 매출(ARR) $30B를 돌파했고, 기업 고객 점유율에서 OpenAI를 최초로 추월(34.4% vs 32.3%)했다.</p>
+      <p class="lead">핵심 역설은 두 겹이다. 첫째, 가장 안전하다고 자부하는 회사가 AGI를 2026–2027년으로 가장 공격적으로 예측한다. 둘째, 최대 투자자(Amazon $8B, Google $2B)가 동시에 최대 경쟁자다. 이 두 역설을 어떻게 관리하느냐가 향후 3-5년의 관건이다.</p>
+      <div class="insight">
+        <p><strong>핵심 발견:</strong> Anthropic은 지난 12개월 동안 정체성을 "Research-first 스타트업"에서 "Global Enterprise SaaS 플랫폼"으로 전환했다. CFO·CCO·CTO·CPO·MD International이 모두 빅테크 출신 시니어로 채워졌고, 2026.10 IPO를 향한 정렬 작업이 마무리 단계다.</p>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:1.2rem;">
+        <div class="card-head">비즈니스 모델 구조</div>
+        <ul>
+          <li><strong>API 과금 (~80%)</strong> — 토큰 소비 기반, AWS Bedrock·GCP 마켓플레이스 포함</li>
+          <li><strong>Claude.ai 구독</strong> — Free / Pro / Team / Enterprise 4티어</li>
+          <li><strong>Claude Code / Cowork</strong> — 에이전틱 도구, 개발자·기업 락인의 핵심</li>
+          <li><strong>파트너 네트워크</strong> — 2026년 $100M 투입, 5배 확장</li>
+          <li><strong>버티컬 패키지</strong> — 금융·의료·법률 규제 준수 번들 (Claude for Legal 2026.5 출시)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-head">법인 구조 특이사항</div>
+        <ul>
+          <li>Delaware <strong>Public Benefit Corporation (PBC)</strong> — 이익보다 미션 우선 명문화</li>
+          <li><strong>Long-Term Benefit Trust (LTBT)</strong> — 재정적 무이해관계 trustee 5인이 이사회 다수 선임권</li>
+          <li>Amazon·Google은 의결권 없는 주식만 보유 — 전략적 통제 불가</li>
+          <li>2026.2 Series G 이후 LTBT 임명 이사가 이사회 실질 다수 확보</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- === SECTION 2: FINANCIALS === -->
+<section id="financials">
+  <div class="section-label">Section 02</div>
+  <h2 class="section-title">재무 현황 & 성장 궤적</h2>
+
+  <table class="rev-table" style="margin-bottom:2rem;">
+    <thead>
+      <tr>
+        <th>시점</th>
+        <th>ARR / 매출</th>
+        <th class="rev-bar-cell">성장 시각화</th>
+        <th>YoY 성장</th>
+        <th>주요 이벤트</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>2022</strong></td>
+        <td><strong>$10M</strong></td>
+        <td class="rev-bar-cell"><div class="rev-bar-outer"><div class="rev-bar-inner" style="width:0.3%;background:#c8c3b5;color:#555;"> </div></div></td>
+        <td style="color:var(--mid);">—</td>
+        <td style="font-size:12.5px;color:var(--mid);">창업 초기, 첫 고객</td>
+      </tr>
+      <tr>
+        <td><strong>2023</strong></td>
+        <td><strong>$100M</strong></td>
+        <td class="rev-bar-cell"><div class="rev-bar-outer"><div class="rev-bar-inner" style="width:1%;background:#b8892a;color:#fff;">  </div></div></td>
+        <td style="color:var(--gold);font-weight:500;">+900%</td>
+        <td style="font-size:12.5px;color:var(--mid);">Claude 1 출시 (3월)</td>
+      </tr>
+      <tr>
+        <td><strong>2024</strong></td>
+        <td><strong>$1B</strong></td>
+        <td class="rev-bar-cell"><div class="rev-bar-outer"><div class="rev-bar-inner" style="width:8%;background:#1a4a7a;color:#fff;">$1B</div></div></td>
+        <td style="color:var(--accent2);font-weight:500;">+900%</td>
+        <td style="font-size:12.5px;color:var(--mid);">Claude 3 출시, 첫 $1B ARR</td>
+      </tr>
+      <tr>
+        <td><strong>2025 mid</strong></td>
+        <td><strong>$5B ARR</strong></td>
+        <td class="rev-bar-cell"><div class="rev-bar-outer"><div class="rev-bar-inner" style="width:42%;background:#c8410a;color:#fff;">$5B</div></div></td>
+        <td style="color:var(--accent);font-weight:500;">+400%</td>
+        <td style="font-size:12.5px;color:var(--mid);">Claude Code 폭발 성장</td>
+      </tr>
+      <tr>
+        <td><strong>2025 end</strong></td>
+        <td><strong>~$9B ARR</strong></td>
+        <td class="rev-bar-cell"><div class="rev-bar-outer"><div class="rev-bar-inner" style="width:64%;background:#c8410a;color:#fff;">$9B</div></div></td>
+        <td style="color:var(--accent);font-weight:500;">+80%</td>
+        <td style="font-size:12.5px;color:var(--mid);">Series F $13B / $183B 밸류</td>
+      </tr>
+      <tr style="background:var(--cream);">
+        <td><strong>2026.2</strong></td>
+        <td><strong>$14B ARR</strong></td>
+        <td class="rev-bar-cell"><div class="rev-bar-outer"><div class="rev-bar-inner" style="width:80%;background:#0f0e0c;color:#f5f2ec;">$14B (Series G 시점)</div></div></td>
+        <td style="color:var(--ink);font-weight:600;">+55%</td>
+        <td style="font-size:12.5px;color:var(--mid);">Series G $30B / $380B 밸류</td>
+      </tr>
+      <tr style="background:var(--ink);color:var(--paper);">
+        <td><strong style="color:var(--paper);">2026.4</strong></td>
+        <td><strong style="color:var(--paper);">$30B+ ARR</strong></td>
+        <td class="rev-bar-cell"><div class="rev-bar-outer" style="background:#2a2a2a;"><div class="rev-bar-inner" style="width:100%;background:var(--accent);color:#fff;">$30B+ (최신)</div></div></td>
+        <td style="color:var(--accent);font-weight:600;">+115%</td>
+        <td style="font-size:12.5px;color:var(--dark-text);">OpenAI ARR 추월</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="fin-notes">
+    <h4>이 회사의 재무적 특이점</h4>
+    <p><strong>1. 매출 곡선은 황금기, 손익은 여전히 적자다.</strong> 2024년 총이익률은 -94%였다. 매출보다 컴퓨트 비용이 거의 두 배였다는 뜻이다. 2025년 ~50%로 개선되었고, 2028년 목표는 77%. 자유현금흐름(FCF) 기준 손익분기점(BEP)은 2027년, 흑자 전환은 2028년으로 내부 목표가 잡혀 있다. ARR $30B에도 불구하고 회사는 아직 적자다.</p>
+    <p><strong>2. 클라우드 비용이 미래 매출의 향방을 결정한다.</strong> 2029년까지 AWS·GCP에 누적 $80B 지출이 예상된다. 매출 성장률보다 컴퓨트 비용 부담이 구조적으로 더 큰 변수다. 2026년 4월 ARR $30B에도 불구하고 컴퓨트 캐파 부족으로 경쟁사인 xAI의 Colossus 1 데이터센터까지 임차했다.</p>
+    <p><strong>3. 인당 매출(RPE)은 업계 최고다.</strong> $14M (Epoch AI 2026.5). Google의 약 2배. 자본·인재 효율 측면에서는 압도적이다. 5,000명 미만으로 ARR $30B를 달성한 것은 SaaS 역사에서 유례없는 사례다.</p>
+    <p><strong>4. "공급자 = 경쟁자" 구조가 핵심 취약점이다.</strong> Amazon($8B 투자, AWS Trainium 제공), Google($2B 투자, TPU 제공)이 동시에 자체 모델(Bedrock·Gemini)로 직접 경쟁한다. 협상 레버리지 측면에서 시간이 갈수록 불리해지는 구조.</p>
+    <p><strong>5. 2026.10 IPO가 모든 것을 결정한다.</strong> 2차시장은 이미 $800B+로 평가 중. $60B 조달 예상. IPO 후 락업 종료(통상 6개월)에 시니어 인재 이탈 가능성, 회계 투명성 부담, 컴퓨트 비용 공개로 인한 밸류에이션 조정 리스크가 동시에 발생한다.</p>
+  </div>
+
+  <div class="two-col" style="margin-top:1.5rem;">
+    <div class="card">
+      <div class="card-head">수익성 경로</div>
+      <ul>
+        <li><strong>총이익률:</strong> 2024년 -94% → 2025년 ~50% → 2028년 목표 77%</li>
+        <li><strong>현금흐름:</strong> 2027년 BEP, 2028년 흑자 전환 목표</li>
+        <li><strong>2028년 내부 목표:</strong> 매출 $70B, 현금흐름 $17B</li>
+        <li><strong>누적 클라우드 비용:</strong> 2029년까지 $80B 예상</li>
+        <li><strong>RPE:</strong> $14M (Epoch AI, 2026.5) — 업계 최고, Google의 2배</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-head">투자자 구조 (주요)</div>
+      <ul>
+        <li><strong>Amazon:</strong> $8B (전략적, AWS 인프라 결합)</li>
+        <li><strong>Google:</strong> $2B (전략적, GCP 통합)</li>
+        <li><strong>Series G 리더:</strong> GIC, Coatue, D.E. Shaw, Dragoneer, Founders Fund, ICONIQ, MGX</li>
+        <li><strong>Series F 리더:</strong> ICONIQ, Fidelity, Lightspeed ($13B, 2025.9)</li>
+        <li><strong>이사회:</strong> Reed Hastings, Jay Kreps, Yasmin Razavi, Chris Liddell</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- === SECTION 3: HISTORY === -->
+<section id="history">
+  <div class="section-label">Section 03</div>
+  <h2 class="section-title">회사 약사 — 정체성 형성의 변곡점</h2>
+  <p class="lead" style="margin-bottom:2rem;">Anthropic은 5년의 짧은 역사를 가졌지만, 그 안에 정체성을 결정짓는 변곡점이 명확히 자리잡고 있다. "안전(Safety)"이라는 미션이 단순 PR이 아닌 거버넌스·제품·사업 모델 전반에 어떻게 박혀 들어갔는지가 핵심이다.</p>
+
+  <div class="two-col">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">2020 말 – 2021.1</div>
+        <div class="tl-title">OpenAI와 결별</div>
+        <div class="tl-desc">Dario가 이사회 직접 보고 및 Brockman과 비협업을 조건으로 제시했으나 거절. 핵심 동기는 "scaling이 강력하다는 신념 + alignment를 별도로 풀어야 한다는 신념을 동시에 받아들이는 조직" 필요. 공동창업자 7인(Dario, Daniela, Jared Kaplan, Tom Brown, Sam McCandlish, Chris Olah, Jack Clark)과 Ben Mann이 합류.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2021.2</div>
+        <div class="tl-title">Anthropic 창립 & PBC/LTBT 설계</div>
+        <div class="tl-desc">Delaware PBC로 설립. 초기 팀 15-20명, 물리학 PhD가 약 2/3. Spark Capital 등 첫 투자 유치. 창립 첫 날부터 PBC + LTBT(Long-Term Benefit Trust) 거버넌스 구조를 설계 — 일반적 스타트업과의 결정적 차이.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2022.12</div>
+        <div class="tl-title">Constitutional AI 논문</div>
+        <div class="tl-desc">외부 모더레이터 없이 원칙(헌법) 집합을 모델에 내재화하는 정렬 기법 발표. 이후 업계 표준에 영향. OpenAI ChatGPT 출시(2022.11) 직후로, Claude 출시 보류 결정을 번복하는 분수령.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2023.3</div>
+        <div class="tl-title">Claude 1 공개 출시</div>
+        <div class="tl-desc">Claude Shannon에서 따온 이름. 3개월 내부 안전 검토 후 출시. Google $300M 전략 투자 동시 유치.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2023.9</div>
+        <div class="tl-title">RSP (Responsible Scaling Policy) v1</div>
+        <div class="tl-desc">BSL(생물안전등급)을 모방한 ASL(AI Safety Level) 프레임워크 발표. "if-then conditional commitment" 명문화 — 업계 최초. 이후 11개 회사가 유사 프레임워크 채택.</div>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">2023.11</div>
+        <div class="tl-title">Amazon 첫 $4B 투자</div>
+        <div class="tl-desc">AWS Bedrock 통합·Trainium 칩 협약 포함. 밸류 $18.4B. OpenAI 이사회 분쟁(Altman 해임·복귀) 소용돌이 속 독자 경로 확인.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2024.3</div>
+        <div class="tl-title">Claude 3 패밀리 (Opus·Sonnet·Haiku)</div>
+        <div class="tl-desc">출시 직후 GPT-4 대비 우위 벤치마크. Claude API 기업 채택 급증. MAU 4M→18.8M (2024.11).</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2024.5</div>
+        <div class="tl-title">첫 CFO·CPO 영입</div>
+        <div class="tl-desc">Krishna Rao CFO (Airbnb IPO 주도) + Mike Krieger CPO (Instagram 공동창업자) 합류. "연구 회사에서 제품 회사로" 전환 신호의 명확한 시점.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2024.11</div>
+        <div class="tl-title">Amazon 추가 $4B → 총 $8B</div>
+        <div class="tl-desc">Trainium 칩으로 Claude 훈련 계획 포함. Series E $3.5B (Lightspeed 리드)로 밸류 $61.5B.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2025.5</div>
+        <div class="tl-title">ASL-3 보호 조치 발동</div>
+        <div class="tl-desc">Claude 4 Opus 출시와 함께 CBRN(화생방핵) 오용 차단용 ASL-3 배포·보안 표준 활성화 — 프론티어 랩 최초.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2025.9</div>
+        <div class="tl-title">Series F $13B / 밸류 $183B</div>
+        <div class="tl-desc">ICONIQ 리드, Fidelity·Lightspeed 공동 참여. ARR $5B → $9B 고속 성장 중.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- === SECTION 4: RECENT DYNAMICS === -->
+<section id="recent">
+  <div class="section-label">Section 04</div>
+  <h2 class="section-title">최근 변화 — 지난 12개월</h2>
+  <p class="lead" style="margin-bottom:2rem;">지난 12개월은 Anthropic이 "연구소"에서 "글로벌 엔터프라이즈 SaaS"로 정체성을 전환한 결정적 시기다. C-Suite 4명이 전부 새로 영입·교체되었고, 일본·인도 거점이 신설되었으며, ARR이 80배 성장했다. 2026.10 IPO를 향한 정렬 작업이 명확히 보인다.</p>
+
+  <h3 class="subsection">주요 이벤트 타임라인</h3>
+  <div class="two-col">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">2025.05</div>
+        <div class="tl-title">Krishna Rao 첫 CFO 영입 (1년 전)</div>
+        <div class="tl-desc">Airbnb IPO를 주도한 인물. IPO 준비의 시작점.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2025.07</div>
+        <div class="tl-title">Paul Smith 첫 CCO 영입 발표</div>
+        <div class="tl-desc">前 ServiceNow President. 합류 30일 만에 ServiceNow·Salesforce·MS·Oracle 출신 영업 50명 영입. 산업 수직(금융·헬스케어·정부) 중심 영업 조직 구축.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2025.10</div>
+        <div class="tl-title">Rahul Patil 신임 CTO</div>
+        <div class="tl-desc">前 Stripe CTO. 공동창업자 Sam McCandlish는 Chief Architect로 이동. 컴퓨트·인프라·인퍼런스 총괄.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2025.10</div>
+        <div class="tl-title">Chris Ciauri MD International 영입</div>
+        <div class="tl-desc">前 Unily CEO, Google Cloud EMEA 사장, Salesforce EMEA EVP. EMEA $200M → $3B 성장 견인.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2025.11</div>
+        <div class="tl-title">Tokyo 사무소 오픈 / Tojo 임명</div>
+        <div class="tl-desc">前 Snowflake Japan Country Manager. 아시아 첫 거점.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2026.01</div>
+        <div class="tl-title">Anthropic Labs 신설</div>
+        <div class="tl-desc">Mike Krieger (Instagram 공동창업자, 前 CPO)가 임원 타이틀 포기하고 MTS로 이동. Ben Mann과 공동 리드. Ami Vora가 Head of Product 승계. 6개월 내 Labs 인력 2배 목표.</div>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">2026.01</div>
+        <div class="tl-title">Bengaluru 사무소 / Ghose 임명</div>
+        <div class="tl-desc">前 Microsoft India MD (24년 재직). India 진출.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2026.02</div>
+        <div class="tl-title">Series G $30B / 밸류 $380B</div>
+        <div class="tl-desc">GIC·Coatue 공동 리드. 6주 내 $1M+ 연 지출 고객사 500개 → 1,000개로 2배 증가.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2026.02</div>
+        <div class="tl-title">Chris Liddell 이사회 합류</div>
+        <div class="tl-desc">前 Microsoft·GM CFO, 트럼프 1기 백악관 비서실 부실장. 거버넌스·정책 시그널.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2026.02</div>
+        <div class="tl-title">美 DoD 제재 분쟁</div>
+        <div class="tl-desc">Hegseth DoD의 국내 대량감시·자율무기 사용 금지 조항 삭제 요구 거부 → 소송. 100+ 고객사 우려 제기. 美 정부 공급망 지정 분쟁.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2026.03</div>
+        <div class="tl-title">Anthropic Institute 출범</div>
+        <div class="tl-desc">Jack Clark이 이끄는 AI 정책 싱크탱크. 정책 인프라 본격화.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2026.04</div>
+        <div class="tl-title">ARR $30B 돌파, OpenAI 추월</div>
+        <div class="tl-desc">Q1 80배 성장. 자체 예측치 대비 8배 초과. xAI Colossus 1 컴퓨트 캐파까지 임차.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2026.05</div>
+        <div class="tl-title">Claude for Legal / SMB 동시 출시</div>
+        <div class="tl-desc">Freshfields 6주 만에 사용량 500% 증가. PwC 전사 도입. 산업 수직 통합 본격화.</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="subsection">CEO·핵심 임원의 최근 공개 발언 (2024-2026)</h3>
+  <div class="three-col">
+    <div>
+      <div class="card-head" style="margin-bottom:0.7rem;">AGI 타임라인 / 노동시장 영향</div>
+      <blockquote>
+        <p>"우리는 이 기술의 생산자로서 다가오는 일에 대해 정직할 의무가 있다. AI는 1-5년 안에 사무직 신입 일자리의 절반을 없애고 실업률을 10-20%까지 끌어올릴 수 있다."</p>
+        <cite>— Dario Amodei, Axios 인터뷰, 2025.5</cite>
+      </blockquote>
+      <blockquote>
+        <p>"우리가 지수곡선의 끝에 얼마나 가까워졌는지에 대한 대중적 인식의 부재가 가장 놀랍다."</p>
+        <cite>— Dario Amodei, Dwarkesh Patel 팟캐스트, 2025</cite>
+      </blockquote>
+    </div>
+    <div>
+      <div class="card-head" style="margin-bottom:0.7rem;">지정학 / 수출 통제</div>
+      <blockquote>
+        <p>"중국 공산당에 기술적 우위를 굳이 넘겨줄 이유는 없다. AI 기업들이 중국보다 더 나은 모델을 가져야 한다."</p>
+        <cite>— Dario Amodei, On DeepSeek, 2025.1</cite>
+      </blockquote>
+      <p style="font-size:13px;margin-top:0.7rem;color:#2a2825;">DoD 분쟁(2026.2) 대응에서 "이 회사는 무엇을 지키는가"를 첫 사례로 보여줌. 국내 대량감시·자율무기 사용 금지 원칙을 정부 압력에도 유지.</p>
+    </div>
+    <div>
+      <div class="card-head" style="margin-bottom:0.7rem;">제품 / 미션 정합성</div>
+      <blockquote>
+        <p>"Ads are coming to AI. But not to Claude."</p>
+        <cite>— Anthropic 슈퍼볼 광고, 2026.2 (OpenAI 광고 도입 직접 저격)</cite>
+      </blockquote>
+      <blockquote>
+        <p>"5년 전 우리가 Anthropic을 시작했을 때, 우리는 안전과 상업적 성공이 충돌하지 않는다고 믿었다."</p>
+        <cite>— Daniela Amodei, Sixth Street 팟캐스트, 2025</cite>
+      </blockquote>
+    </div>
+  </div>
+
+  <div class="insight">
+    <p><strong>최근 변화의 의미:</strong> 12개월 인사 패턴은 명확한 시그널이다. CFO(Rao) → CCO(Smith) → CTO(Patil) → MD Intl(Ciauri) → CPO(Vora)의 순차적 영입은 모두 빅테크/엔터프라이즈 SaaS 베테랑이며, 이는 IPO 준비, 국제 거점화, 산업 수직 통합이라는 3대 전환의 인적 정렬이다. CEO 발언은 일관되게 "AGI 임박 + 안전 차별화 + 정부와의 거리감"을 강조 — 이는 IPO 스토리텔링과 정확히 일치한다.</p>
+  </div>
+</section>
+
+<!-- === SECTION 5: LEADERSHIP & ORG === -->
+<section id="leadership">
+  <div class="section-label">Section 05</div>
+  <h2 class="section-title">리더십 & 조직 구조</h2>
+
+  <p class="lead">아래는 본문 요약이며, <strong>상세 프로필(생년·학력·경력·LinkedIn)은 섹션 09 "프로필 부록"</strong>을 참조.</p>
+
+  <!-- Dario -->
+  <h3 class="subsection">Dario Amodei — CEO & Co-Founder</h3>
+  <div class="two-col">
+    <div>
+      <div class="card">
+        <div class="card-head">경력 궤적</div>
+        <ul>
+          <li>Caltech 학부 (편입) → Stanford BS Physics → <strong>Princeton 생물리학 박사 (2011)</strong></li>
+          <li>Stanford 박사후 연구원 (~2014)</li>
+          <li>Baidu (2014-15, 음성인식)</li>
+          <li>Google Brain (2015-16, Senior Research Scientist)</li>
+          <li><strong>OpenAI (2016-2020):</strong> AI Safety Lead → Research VP. GPT-2·GPT-3 총괄, RLHF 공동 발명자</li>
+          <li><strong>Anthropic (2021-):</strong> CEO, 공동창업자</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-top:1.2rem;">
+        <div class="card-head">경영 철학</div>
+        <p>"과학자-CEO" 유형. "Scaling hypothesis + Alignment 이중 신념"으로 요약. Eric Schmidt: <em>"Dario는 뛰어난 과학자이고, 뛰어난 과학자를 채용하겠다고 약속했고 그렇게 했다."</em> 의사결정은 연구 기반. 제품이 연구에서 나오는 것이 아니라 연구와 함께 만들어진다.</p>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="card-head">주요 행보 (2024-2026)</div>
+        <ul>
+          <li><strong>"Machines of Loving Grace" (2024.10):</strong> ~14,000단어 에세이. AGI 2026-2027 타임라인 최초 명시. 100년 진보가 5-10년에 압축될 수 있다고 주장</li>
+          <li><strong>DeepSeek/수출통제 에세이 (2025.1):</strong> "한 주 전보다 더 실존적으로 중요해졌다" — 미국 AI 정책 논의에 직접 개입</li>
+          <li><strong>DoD 분쟁 (2026.2):</strong> Hegseth 국방부 압력에도 국내 감시·자율무기 사용 금지 조항 유지 → 소송</li>
+          <li><strong>슈퍼볼 광고 (2026.2):</strong> OpenAI 광고 도입 직접 저격</li>
+          <li><strong>"The Adolescence of Technology" (2026.1):</strong> AI 위험 5개 카테고리 분류</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Daniela -->
+  <h3 class="subsection">Daniela Amodei — President & Co-Founder</h3>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-head">역할 & 배경</div>
+      <ul>
+        <li>UCSC 영문학 학사 (비기술직 공동창업자로 이례적)</li>
+        <li>미 의회 보좌관 → Stripe 초기 직원 (Risk Manager) → OpenAI VP Safety & Policy</li>
+        <li>일상 운영 대부분 감독, 시니어 리더십팀 직접 보고</li>
+        <li>People · Operations · Commercial · 파트너십 · Legal · Finance 총괄</li>
+        <li>Dario(연구·비전) ↔ Daniela(운영·상업) 분업 구조</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-head">위치와 평판</div>
+      <blockquote style="margin:0;">
+        <p>"5년 전 우리가 Anthropic을 시작했을 때, 우리는 안전과 상업적 성공이 충돌하지 않는다고 믿었다."</p>
+        <cite>— Sixth Street 팟캐스트, 2025</cite>
+      </blockquote>
+      <p style="font-size:13px;margin-top:0.9rem;color:#2a2825;">Cloud Wars/Fast Company 평가: "senior leadership teams reporting to her" — Dario보다 일상 운영에 더 가깝다는 평가. 안전 포지셔닝과 상업 성공의 균형 유지를 주도하는 인물로 묘사됨. Time 100 (2023).</p>
+    </div>
+  </div>
+
+  <!-- C-Suite -->
+  <h3 class="subsection">C-Suite & 시니어 리더십 (2026.5 기준)</h3>
+  <div class="person-grid">
+    <div class="person clevel">
+      <div class="person-name">Krishna Rao</div>
+      <div class="person-title">CFO (2024.5~)</div>
+      <div class="person-prev">← Fanatics Commerce · Cedar · Airbnb · Blackstone · Bain</div>
+      <p>Harvard 경제학(summa cum laude), Yale JD. IPO/M&A 전문가. 2028년 흑자 전환 경로 설계 책임.</p>
+    </div>
+    <div class="person clevel">
+      <div class="person-name">Paul Smith</div>
+      <div class="person-title">CCO (2025.8~, 첫 CCO)</div>
+      <div class="person-prev">← ServiceNow President · Salesforce EMEA EVP · Microsoft</div>
+      <p>ServiceNow $4B → $12B 견인. 합류 30일 내 50명 영업 영입. 산업 수직 중심 GTM 전략 설계자.</p>
+    </div>
+    <div class="person clevel">
+      <div class="person-name">Rahul Patil</div>
+      <div class="person-title">CTO (2025.10~)</div>
+      <div class="person-prev">← Stripe CTO · Oracle Cloud · AWS · Microsoft</div>
+      <p>인프라·확장성 전문가. $80B 클라우드 의존 구조 개선과 자체 인프라 전략이 핵심 과제.</p>
+    </div>
+    <div class="person clevel">
+      <div class="person-name">Ami Vora</div>
+      <div class="person-title">Head of Product (2026.1~)</div>
+      <div class="person-prev">← Faire CPO · Meta WhatsApp VP · Facebook Ads VP</div>
+      <p>Mike Krieger 후임. 소비자 제품 경험과 기업용 AI 제품 전략 결합 담당. Datadog 이사회 멤버.</p>
+    </div>
+    <div class="person clevel">
+      <div class="person-name">Chris Ciauri</div>
+      <div class="person-title">MD International (2025.10~)</div>
+      <div class="person-prev">← Unily CEO · Google Cloud EMEA 사장 · Salesforce EMEA EVP</div>
+      <p>Salesforce EMEA $200M → $3B 성장 견인. 국제 거점 신설 총괄. Country MD 라인 직속.</p>
+    </div>
+    <div class="person clevel">
+      <div class="person-name">Hannah Pritchett</div>
+      <div class="person-title">CPO (People)</div>
+      <div class="person-prev">← (정보 제한적, 외부 노출 적음)</div>
+      <p>2,500명 → 5,000명대 급성장 인사 총괄. 95% offer acceptance, 80% retention 유지가 핵심.</p>
+    </div>
+    <div class="person clevel">
+      <div class="person-name">Jason Clinton</div>
+      <div class="person-title">CISO</div>
+      <div class="person-prev">← Google 보안</div>
+      <p>Claude Security 제품 라인 총괄 (DoorDash 등 도입 견인). 사이버보안·모델 안전 동시 책임.</p>
+    </div>
+    <div class="person founder">
+      <div class="person-name">Jared Kaplan</div>
+      <div class="person-title">CSO · Responsible Scaling Officer</div>
+      <div class="person-prev">← Johns Hopkins 교수 · OpenAI 협력 연구</div>
+      <p>Neural Scaling Laws 공저자. Harvard 물리 박사. RSP 프레임워크 설계 주도, ASL 단계 결정권자.</p>
+    </div>
+    <div class="person founder">
+      <div class="person-name">Sam McCandlish</div>
+      <div class="person-title">Chief Architect (前 CTO)</div>
+      <div class="person-prev">← OpenAI Scaling Team · 이론물리학 박사</div>
+      <p>2025.10 CTO에서 Chief Architect로 이동. 사전훈련·대규모 모델 훈련 집중. Scaling Laws 공저자.</p>
+    </div>
+    <div class="person founder">
+      <div class="person-name">Tom Brown</div>
+      <div class="person-title">Chief Compute Officer</div>
+      <div class="person-prev">← OpenAI (GPT-3 Lead Engineer, 1저자) · MIT</div>
+      <p>"Language Models are Few-Shot Learners" 1저자. 컴퓨팅 인프라·하드웨어 전략 총괄.</p>
+    </div>
+    <div class="person founder">
+      <div class="person-name">Mike Krieger</div>
+      <div class="person-title">Labs 공동 리드 (前 CPO)</div>
+      <div class="person-prev">← Instagram 공동창업자 · Artifact (Yahoo 매각)</div>
+      <p>2024.5 CPO 합류 → 2026.1 임원 타이틀 포기하고 MTS로. Labs 공동 리드. Figma 이사 (겸).</p>
+    </div>
+    <div class="person founder">
+      <div class="person-name">Ben Mann</div>
+      <div class="person-title">Labs 공동 리드</div>
+      <div class="person-prev">← OpenAI (GPT-3 아키텍처) · Google SWE</div>
+      <p>창업 멤버. Krieger와 함께 2026.1 설립된 실험 조직 공동 리드. 새 제품 카테고리 탐색 담당.</p>
+    </div>
+    <div class="person founder">
+      <div class="person-name">Jack Clark</div>
+      <div class="person-title">Head of Policy</div>
+      <div class="person-prev">← OpenAI Policy Director · Bloomberg/The Register 기자</div>
+      <p>"Import AI" 뉴스레터 (주 7만 구독). Anthropic Institute 리드. AI 정책·규제 대외 핵심 인물.</p>
+    </div>
+    <div class="person founder">
+      <div class="person-name">Chris Olah</div>
+      <div class="person-title">Mechanistic Interpretability Lead</div>
+      <div class="person-prev">← OpenAI · Google Brain</div>
+      <p>AI 해석가능성 연구의 세계적 권위자. Anthropic 안전 연구의 기술적 핵심. 논문 인용 수 업계 최상위.</p>
+    </div>
+    <div class="person clevel">
+      <div class="person-name">Hidetoshi Tojo</div>
+      <div class="person-title">Head of Japan (2025.11~)</div>
+      <div class="person-prev">← Snowflake Japan · Google Cloud Japan · Microsoft</div>
+      <p>Snowflake Japan 런칭부터 성장 주도. 도쿄 사무소 첫 오피스 개설. Rakuten·NRI·Panasonic 파트너십 책임.</p>
+    </div>
+    <div class="person clevel">
+      <div class="person-name">Irina Ghose</div>
+      <div class="person-title">MD India (2026.1~)</div>
+      <div class="person-prev">← Microsoft India MD (24년 재직)</div>
+      <p>IIT BHU 전자공학, XLRI MBA. Bengaluru 사무소 개설. Microsoft 시절 부터 인도 디지털 전환 주도.</p>
+    </div>
+  </div>
+
+  <!-- Org Chart -->
+  <h3 class="subsection">조직 구조 (2026.5 추정)</h3>
+  <div class="two-col">
+    <div>
+      <div class="org-level">
+        <div class="org-level-label">Board of Directors</div>
+        <div class="org-nodes">
+          <div class="org-node ceo-node"><div class="node-name">Dario Amodei</div><div class="node-role">CEO</div></div>
+          <div class="org-node founder-node"><div class="node-name">Daniela Amodei</div><div class="node-role">President</div></div>
+          <div class="org-node clevel-node"><div class="node-name">Reed Hastings</div><div class="node-role">Netflix 창업자</div></div>
+          <div class="org-node clevel-node"><div class="node-name">Jay Kreps</div><div class="node-role">Confluent CEO</div></div>
+          <div class="org-node clevel-node"><div class="node-name">Yasmin Razavi</div><div class="node-role">Spark Capital</div></div>
+          <div class="org-node clevel-node"><div class="node-name">Chris Liddell</div><div class="node-role">前 MS·GM CFO</div></div>
+        </div>
+      </div>
+      <div class="org-level">
+        <div class="org-level-label">CEO 직속 — Research·Product·Engineering·Policy</div>
+        <div class="org-nodes">
+          <div class="org-node founder-node"><div class="node-name">Jared Kaplan</div><div class="node-role">CSO/RSO</div></div>
+          <div class="org-node clevel-node"><div class="node-name">Rahul Patil</div><div class="node-role">CTO</div></div>
+          <div class="org-node clevel-node"><div class="node-name">Ami Vora</div><div class="node-role">Head of Product</div></div>
+          <div class="org-node founder-node"><div class="node-name">Jack Clark</div><div class="node-role">Policy</div></div>
+          <div class="org-node"><div class="node-name">Jason Clinton</div><div class="node-role">CISO</div></div>
+        </div>
+      </div>
+      <div class="org-level">
+        <div class="org-level-label">President 직속 — Commercial·Ops·People·Finance</div>
+        <div class="org-nodes">
+          <div class="org-node clevel-node"><div class="node-name">Paul Smith</div><div class="node-role">CCO</div></div>
+          <div class="org-node clevel-node"><div class="node-name">Krishna Rao</div><div class="node-role">CFO</div></div>
+          <div class="org-node clevel-node"><div class="node-name">Chris Ciauri</div><div class="node-role">MD International</div></div>
+          <div class="org-node"><div class="node-name">Hannah Pritchett</div><div class="node-role">CPO People</div></div>
+        </div>
+      </div>
+      <div class="org-level">
+        <div class="org-level-label">Research·Engineering 핵심 (창업자 라인)</div>
+        <div class="org-nodes">
+          <div class="org-node founder-node"><div class="node-name">Sam McCandlish</div><div class="node-role">Chief Architect</div></div>
+          <div class="org-node founder-node"><div class="node-name">Tom Brown</div><div class="node-role">Chief Compute</div></div>
+          <div class="org-node founder-node"><div class="node-name">Chris Olah</div><div class="node-role">Interpretability</div></div>
+        </div>
+      </div>
+      <div class="org-level">
+        <div class="org-level-label">신설 조직 (2026.1)</div>
+        <div class="org-nodes">
+          <div class="org-node clevel-node"><div class="node-name">Anthropic Labs</div><div class="node-role">Krieger + Mann</div></div>
+          <div class="org-node founder-node"><div class="node-name">Anthropic Institute</div><div class="node-role">Jack Clark 리드 (2026.3)</div></div>
+        </div>
+      </div>
+      <div class="org-level">
+        <div class="org-level-label">International (Ciauri 산하)</div>
+        <div class="org-nodes">
+          <div class="org-node clevel-node"><div class="node-name">Hidetoshi Tojo</div><div class="node-role">Japan</div></div>
+          <div class="org-node clevel-node"><div class="node-name">Irina Ghose</div><div class="node-role">India</div></div>
+          <div class="org-node"><div class="node-name">EMEA (London·Dublin)</div><div class="node-role">기존</div></div>
+        </div>
+      </div>
+      <div class="org-legend">
+        <span class="dot" style="background:var(--accent);"></span>CEO
+        <span class="dot" style="background:var(--gold);"></span>공동창업자
+        <span class="dot" style="background:var(--accent2);"></span>외부 영입 C레벨/이사
+      </div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:1.2rem;">
+        <div class="card-head">부서별 인력 비중 (추정)</div>
+        <ul>
+          <li><strong>Research & AI Safety (~35%)</strong> — Alignment, Interpretability, Constitutional AI, Red Team</li>
+          <li><strong>Engineering (~30%)</strong> — Pretraining, Post-training, Claude Code, Infrastructure</li>
+          <li><strong>Go-to-Market / Sales (~15%)</strong> — 4개 권역, 300K+ 고객 운영</li>
+          <li><strong>Policy & Communications (~10%)</strong> — Anthropic Institute(2026.3) 포함</li>
+          <li><strong>Operations / Finance / HR (~10%)</strong> — 비교적 린한 구조</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom:1.2rem;">
+        <div class="card-head">의사결정 방식</div>
+        <p style="font-size:13px;line-height:1.7;">전통적 SaaS도, 순수 학술 연구소도 아닌 "Research-embedded Product" 구조. Mike Krieger (당시 CPO): <em>"제품 팀을 AI 연구자와 직접 임베드시키는 것이 단순히 모델 위에 UX를 얹는 것보다 10배의 가치를 낸다."</em> Frontier Red Team·Trust & Safety·Alignment Science·RSP 팀이 출시 결정에 거부권에 가까운 영향력 보유.</p>
+      </div>
+      <div class="card">
+        <div class="card-head">원격근무 / 글로벌 오피스</div>
+        <ul>
+          <li>본사: San Francisco (핵심 의사결정 SF 집중)</li>
+          <li>주요 오피스: NYC · Seattle · London · Dublin · Tokyo · Bengaluru · Zurich · Singapore</li>
+          <li>공식: "remote-friendly" 표방. 실제: 약 8%만 remote-friendly 포지션 (2026.4)</li>
+          <li>APAC 확장: Japan(2025.11) → India(2026.1) → 한국·동남아 미확정</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- === SECTION 6: TALENT === -->
+<section id="talent">
+  <div class="section-label">Section 06</div>
+  <h2 class="section-title">인재 전략 & 인력 현황</h2>
+
+  <div class="two-col" style="margin-bottom:2rem;">
+    <div>
+      <div class="card-head" style="margin-bottom:1rem;">직원 수 변화</div>
+      <table class="talent-table">
+        <thead>
+          <tr><th>시점</th><th>직원 수</th><th>주요 이벤트</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>2021.2</td><td><strong>7명</strong></td><td class="td-prev">공동창업자 7인 분사</td></tr>
+          <tr><td>2021 말</td><td><strong>~30명</strong></td><td class="td-prev">초기 팀 구성</td></tr>
+          <tr><td>2022</td><td><strong>192명</strong></td><td class="td-prev">첫 Claude 훈련 완료</td></tr>
+          <tr><td>2023</td><td><strong>~500명</strong></td><td class="td-prev">Claude 1 출시</td></tr>
+          <tr><td>2024</td><td><strong>~1,500명</strong></td><td class="td-prev">Claude 3 출시, 첫 CFO/CPO</td></tr>
+          <tr><td>2025.12</td><td><strong>~2,300명</strong></td><td class="td-prev">Fortune 보도 (Jeremy Kahn)</td></tr>
+          <tr style="background:var(--cream);"><td>2026.4</td><td><strong>2,500-5,000명</strong></td><td class="td-prev">데이터 격차 큼 (공식 vs 추정)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <div class="card-head" style="margin-bottom:1rem;">2년 직원 유지율 — 업계 비교 (SignalFire 2025)</div>
+      <div class="ret-row">
+        <div class="ret-label">🏆 Anthropic</div>
+        <div class="ret-bar-bg"><div class="ret-bar-fill" style="width:80%;background:var(--accent);color:#fff;">80%</div></div>
+        <div class="ret-val">80%</div>
+      </div>
+      <div class="ret-row">
+        <div class="ret-label">Google DeepMind</div>
+        <div class="ret-bar-bg"><div class="ret-bar-fill" style="width:78%;background:#1a4a7a;color:#fff;">78%</div></div>
+        <div class="ret-val">78%</div>
+      </div>
+      <div class="ret-row">
+        <div class="ret-label">OpenAI</div>
+        <div class="ret-bar-bg"><div class="ret-bar-fill" style="width:67%;background:#6b6760;color:#fff;">67%</div></div>
+        <div class="ret-val">67%</div>
+      </div>
+      <div class="ret-row">
+        <div class="ret-label">Meta</div>
+        <div class="ret-bar-bg"><div class="ret-bar-fill" style="width:64%;background:#c8c3b5;color:#3a3835;">64%</div></div>
+        <div class="ret-val">64%</div>
+      </div>
+      <div class="insight" style="margin-top:1rem;">
+        <p><strong>이직 방향성:</strong> OpenAI 엔지니어 → Anthropic 이직 확률 = 반대의 <strong>8배</strong>. DeepMind → Anthropic = <strong>~11배</strong>. AI 인재 시장에서 "안전 미션" 포지셔닝의 자본 효율을 보여주는 지표.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-head">보상 구조</div>
+      <ul>
+        <li><strong>소프트웨어 엔지니어 TC:</strong> $300K-$490K/년 (Glassdoor, 2026)</li>
+        <li><strong>시니어 스태프 이상:</strong> 그 이상 (비공개)</li>
+        <li><strong>Glassdoor 보상·복지:</strong> 4.9/5 (가장 높은 항목)</li>
+        <li><strong>에쿼티 업사이드:</strong> 2025.3($61.5B) → 2026.2($380B) — 1년 만에 6배. 초기 부여분 페이퍼 밸류 폭증이 결정적 유인</li>
+        <li><strong>경쟁 전략:</strong> Meta의 $100M 1년 패키지에 직접 맞불 안 놓음. "미션 정합성 + 에쿼티 상승"으로 경쟁</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-head">주목할 인재 영입·이탈</div>
+      <ul>
+        <li><strong>Jan Leike (영입, 2024):</strong> OpenAI superalignment lead → "shiny products" 비판 후 Anthropic alignment science lead로 합류</li>
+        <li><strong>Niki Parmar, Neil Houlsby (영입):</strong> Google DeepMind 출신 연구자</li>
+        <li><strong>Mike Krieger (내부 전환, 2026.1):</strong> CPO → Anthropic Labs 공동 리드. 임원 타이틀 포기 사례</li>
+        <li><strong>John Schulman (이탈, 2025.2):</strong> 2024.8 합류 → Thinking Machines Lab 창업. 시니어 첫 이탈</li>
+        <li><strong>Joel Pobar, Anton Bakhtin (이탈):</strong> Meta Superintelligence Labs로 이동</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- === SECTION 7: COMPETITIVE & SWOT === -->
+<section id="competitive">
+  <div class="section-label">Section 07</div>
+  <h2 class="section-title">경쟁 구도 · 협력 매트릭스 · SWOT</h2>
+
+  <h3 class="subsection">SWOT 분석</h3>
+  <div class="swot-grid">
+    <div class="swot-cell">
+      <div class="swot-head">
+        <span>💪 강점</span>
+        <span class="tag tag-s">Strengths</span>
+      </div>
+      <ul>
+        <li>Constitutional AI 및 RSP로 안전성 포지셔닝 업계 선도 — 규제를 경쟁우위로 전환</li>
+        <li>OpenAI 대비 인재 유입 8:1, DeepMind 대비 11:1, 80% retention (업계 1위)</li>
+        <li>Amazon·Google 이중 전략 투자 — 클라우드 인프라·분배 채널 동시 확보</li>
+        <li>Claude Code로 개발자·기업 워크플로우 심층 통합, 락인 효과</li>
+        <li>기업 고객 점유율 34.4%로 OpenAI(32.3%) 최초 추월 (Ramp AI Index, 2026.5)</li>
+        <li>공동창업자 7인 전원 5년간 이탈 없음 — 지식 연속성 압도적</li>
+        <li>인당 매출(RPE) $14M — Google의 2배, 업계 최고</li>
+      </ul>
+    </div>
+    <div class="swot-cell">
+      <div class="swot-head">
+        <span>⚠️ 약점</span>
+        <span class="tag tag-w">Weaknesses</span>
+      </div>
+      <ul>
+        <li>2024년 총이익률 -94% — 막대한 컴퓨팅 비용 (2029년까지 $80B 클라우드 예상)</li>
+        <li>AWS·GCP 의존 — 공급자이자 경쟁자인 구조적 취약점</li>
+        <li>ChatGPT 대비 소비자 브랜드 인지도·MAU 열세 (Claude 16M vs ChatGPT 수억)</li>
+        <li>오픈소스 경쟁자(Meta Llama) 대비 폐쇄형 모델 — 가격 압박</li>
+        <li>SF 집중·Glassdoor 워라밸 3.4 — 지속 성장 시 문화 희석 위험</li>
+        <li>국제 거점 늦은 출발 (Tokyo 2025.11, Bengaluru 2026.1)</li>
+      </ul>
+    </div>
+    <div class="swot-cell">
+      <div class="swot-head">
+        <span>🚀 기회</span>
+        <span class="tag tag-o">Opportunities</span>
+      </div>
+      <ul>
+        <li>AI 에이전트 시장 폭발 — Claude Code, Cowork 선점 가능성</li>
+        <li>글로벌 AI 규제 강화 (EU AI Act 등) → 안전성 포지셔닝 프리미엄 수혜</li>
+        <li>금융·헬스케어·법률 버티컬 엔터프라이즈: 규제 준수 AI에 프리미엄 지불 의향</li>
+        <li>유럽·아시아 시장 초기 단계 — 2028년 $70B 목표 달성 위한 지리적 확장 여지</li>
+        <li>Claude Partner Network 초기 단계 ($100M, 2026)</li>
+        <li>2026.10 IPO 예상 — 자본·인지도 점프</li>
+      </ul>
+    </div>
+    <div class="swot-cell">
+      <div class="swot-head">
+        <span>⚡ 위협</span>
+        <span class="tag tag-t">Threats</span>
+      </div>
+      <ul>
+        <li>모델 성능 벤치마크 빠르게 수렴 — Gemini 2.5가 일부 테스트에서 추월</li>
+        <li>OpenAI Stargate $500B 인프라 투자 — 컴퓨팅 규모 격차 확대</li>
+        <li>Meta Llama·Mistral 오픈소스 확산 → 가격 경쟁 심화</li>
+        <li>DoD 제재 분쟁(2026.2) — 미 정부 조달 위험, 동맹국 정부 매출로 확산 가능성</li>
+        <li>Amazon·Google이 자체 모델 강화 시 분배 채널·인프라 동시 위험</li>
+        <li>80x 성장의 지속 가능성 의문</li>
+      </ul>
+    </div>
+  </div>
+  <div class="insight">
+    <p><strong>전략 핵심 역설:</strong> "가장 큰 파트너가 가장 큰 위협"이라는 구조다. Amazon Bedrock·GCP 의존도를 줄이는 독자적 인프라 투자 또는 제3 클라우드 다각화가 장기 생존의 구조적 과제로 부상하고 있다. 2025-2027년이 결정적 시기.</p>
+  </div>
+
+  <h3 class="subsection">핵심 경쟁사 매트릭스</h3>
+  <table class="comp-table">
+    <thead>
+      <tr>
+        <th>경쟁사</th>
+        <th>경쟁 영역</th>
+        <th>강점</th>
+        <th>약점 (vs Anthropic)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>OpenAI</strong></td>
+        <td>모든 영역 (직접 경쟁)</td>
+        <td>컨슈머 브랜드, 사용자 규모</td>
+        <td>B2B 약함 (30% vs 80%), MS 의존</td>
+      </tr>
+      <tr>
+        <td><strong>Google DeepMind</strong></td>
+        <td>모델·플랫폼·인프라</td>
+        <td>TPU 자체 인프라, 자본력</td>
+        <td>Gemini 엔터프라이즈 채택 더딤</td>
+      </tr>
+      <tr>
+        <td><strong>Microsoft Azure AI</strong></td>
+        <td>엔터프라이즈 채널</td>
+        <td>Office 365 통합, 영업력</td>
+        <td>자체 모델 약함, OpenAI 의존 리스크</td>
+      </tr>
+      <tr>
+        <td><strong>Meta (LLaMA)</strong></td>
+        <td>오픈소스</td>
+        <td>비용 우위, 광범위 채택</td>
+        <td>Frontier 성능 미달, B2B 미진출</td>
+      </tr>
+      <tr>
+        <td><strong>xAI (Grok)</strong></td>
+        <td>인프라·모델</td>
+        <td>Colossus 데이터센터, 머스크</td>
+        <td>실제 Anthropic에 캐파 임대 — 이중관계</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="subsection">핵심 협력 파트너 매트릭스</h3>
+  <table class="comp-table">
+    <thead>
+      <tr>
+        <th>파트너</th>
+        <th>관계 유형</th>
+        <th>핵심 내용</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>AWS</strong></td>
+        <td>전략 투자자 + 인프라</td>
+        <td>10년 $100B 컴퓨트 약정, Trainium 캐파, $8B 누적 투자. Bedrock 채널</td>
+      </tr>
+      <tr>
+        <td><strong>Google</strong></td>
+        <td>전략 투자자 + 인프라 + 경쟁자</td>
+        <td>1M TPU 약정. Vertex AI 채널. Gemini와 직접 경쟁</td>
+      </tr>
+      <tr>
+        <td><strong>Microsoft</strong></td>
+        <td>채널 파트너 (제한적)</td>
+        <td>Office 365 Copilot에 Claude 통합 (OpenAI와 병행)</td>
+      </tr>
+      <tr>
+        <td><strong>xAI</strong></td>
+        <td>임시 컴퓨트 공급자</td>
+        <td>Colossus 1 데이터센터 캐파 임대 — 경쟁자에게 컴퓨트 받는 이례적 구조</td>
+      </tr>
+      <tr>
+        <td><strong>SI / Consulting</strong></td>
+        <td>구축·통합 파트너</td>
+        <td>PwC (전사 도입), Deloitte (47만명), KPMG (27만명), Freshfields (법무 6주 만에 500%↑)</td>
+      </tr>
+      <tr>
+        <td><strong>Blackstone·Goldman·H&F</strong></td>
+        <td>합작 SaaS 벤처</td>
+        <td>$1.5B 합작 엔터프라이즈 AI 서비스 회사 (헬스케어·제조·금융 타깃)</td>
+      </tr>
+      <tr>
+        <td><strong>일본 기업</strong></td>
+        <td>로컬 도입</td>
+        <td>Rakuten, NRI, Panasonic</td>
+      </tr>
+      <tr>
+        <td><strong>美·英 정부</strong></td>
+        <td>공공 부문</td>
+        <td>UK Government 도입. 단 美 정부와는 공급망 지정 분쟁 진행 중</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- === SECTION 8: WATCHLIST === -->
+<section id="watchlist">
+  <div class="section-label">Section 08</div>
+  <h2 class="section-title">Watchlist — 모니터링 지표</h2>
+  <p class="lead" style="margin-bottom:2rem;">다음 시그널이 발생하면 즉각 보고 또는 의사결정 검토 권장. 카테고리별 핵심 트리거.</p>
+
+  <div class="watch-grid">
+    <div class="watch-card">
+      <h4>채용 · 조직 시그널</h4>
+      <ul>
+        <li><strong>Korea MD / Country Manager 잡 포스팅</strong> — 한국 진출 직접 신호</li>
+        <li><strong>Anthropic Korea 법인 등기</strong> — 통상 잡 포스팅에 선행</li>
+        <li><strong>Dario / Ciauri 한국 방문</strong> — 거점 신설 임박</li>
+        <li><strong>Watchlist 임원의 이탈</strong> — IPO 후 12-18개월이 위험 구간</li>
+      </ul>
+    </div>
+    <div class="watch-card">
+      <h4>비즈니스 · 전략 시그널</h4>
+      <ul>
+        <li><strong>IPO S-1 제출</strong> (2026.10 예상) — 락업 기간 시작, 회계 투명성 노출</li>
+        <li><strong>분기 성장률 30배 이하 하락</strong> — 80x 신화 종료 신호</li>
+        <li><strong>美 DoD 분쟁 결정</strong> — 고객 이탈 본격화 여부</li>
+        <li><strong>새로운 산업 수직 출시</strong> (Manufacturing? Healthcare?)</li>
+      </ul>
+    </div>
+    <div class="watch-card">
+      <h4>인프라 · 파트너십 시그널</h4>
+      <ul>
+        <li><strong>한국 클라우드·데이터센터 계약</strong> — 인프라 측면 한국 접점</li>
+        <li><strong>삼성전자·SK하이닉스 HBM/AI 칩 계약</strong> — 반도체 측면 그룹 차원 접점</li>
+        <li><strong>새로운 글로벌 SI 파트너십</strong> — 한국 SI들의 기회/위협</li>
+        <li><strong>Microsoft 관계 변화</strong> — 시장 재편 신호</li>
+      </ul>
+    </div>
+    <div class="watch-card">
+      <h4>리스크 시그널</h4>
+      <ul>
+        <li><strong>주요 시니어 이탈</strong> — Smith·Ciauri·Rao·Patil 중 1명이라도 이탈 시</li>
+        <li><strong>모델 벤치마크 역전</strong> — Gemini·GPT 등 경쟁 모델이 명확 추월</li>
+        <li><strong>오픈소스 추격</strong> — Llama 4가 Claude 성능 도달 여부</li>
+        <li><strong>새로운 정부 규제·소송</strong> — DoD 외 추가 분쟁</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- === SECTION 9: PROFILES APPENDIX === -->
+<section id="profiles">
+  <div class="section-label">Section 09 — Appendix</div>
+  <h2 class="section-title">인물 프로필 부록</h2>
+  <p class="lead" style="margin-bottom:1.5rem;">본문 등장 인물의 상세 정보 (생년·학력·경력·LinkedIn). 정보 신뢰도 표기: <span class="uncertain">추정</span> = 단편적 근거 기반 추론 / <span class="verify">확인 불가</span> = 공개 정보로 확인 어려움.</p>
+
+  <!-- DARIO -->
+  <div class="profile">
+    <div class="profile-header">
+      <div class="profile-name">Dario Amodei</div>
+      <div class="profile-role">Co-Founder · CEO</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd>1983년, 미국 샌프란시스코</dd>
+      <dt>국적</dt><dd>이탈리아계 미국인 (이탈리아인 부, 유대계 미국인 모)</dd>
+      <dt>관계</dt><dd>Daniela Amodei의 오빠</dd>
+      <dt>LinkedIn</dt><dd><span class="verify">공개 프로필 확인 불가</span> · 개인 사이트: darioamodei.com</dd>
+    </dl>
+    <span class="profile-sec-label">학력</span>
+    <ul class="career-list">
+      <li><span class="period">~2001</span><span>San Francisco Lowell High School 졸업</span></li>
+      <li><span class="period">2001-2003</span><span>California Institute of Technology (Caltech), 물리학 (편입)</span></li>
+      <li><span class="period">~2006</span><span>Stanford University, B.S. Physics</span></li>
+      <li><span class="period">2006-2011</span><span>Princeton University, Ph.D. Biophysics (Hertz Fellow). 학위논문: "Network-Scale Electrophysiology"</span></li>
+      <li><span class="period">2011-2014</span><span>Stanford University School of Medicine, 박사후연구원</span></li>
+    </ul>
+    <span class="profile-sec-label">경력</span>
+    <ul class="career-list">
+      <li><span class="period">2014.11-2015.10</span><span>Baidu, Senior Research Scientist (Deep Speech 2 등)</span></li>
+      <li><span class="period">2015-2016</span><span>Google Brain, Senior Research Scientist</span></li>
+      <li><span class="period">2016-2020</span><span>OpenAI, Research Director → VP of Research (GPT-2, GPT-3, RLHF 공동 발명)</span></li>
+      <li><span class="period">2021.02-현재</span><span>Anthropic, Co-Founder & CEO</span></li>
+    </ul>
+  </div>
+
+  <!-- DANIELA -->
+  <div class="profile">
+    <div class="profile-header">
+      <div class="profile-name">Daniela Amodei</div>
+      <div class="profile-role">Co-Founder · President</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd>1987년, 미국 샌프란시스코 (Dario의 동생)</dd>
+      <dt>배우자</dt><dd>Holden Karnofsky (2017년 결혼, Open Philanthropy 공동창업자)</dd>
+      <dt>LinkedIn</dt><dd><span class="verify">공개 프로필 확인 불가</span></dd>
+    </dl>
+    <span class="profile-sec-label">학력</span>
+    <ul class="career-list">
+      <li><span class="period">~2005</span><span>San Francisco Lowell High School</span></li>
+      <li><span class="period">~2009</span><span>University of California, Santa Cruz, B.A. English Literature (Politics, Music 부전공). Summa Cum Laude. 음악 부분 장학생</span></li>
+    </ul>
+    <span class="profile-sec-label">경력</span>
+    <ul class="career-list">
+      <li><span class="period">2010</span><span>University of Maryland IRIS Center, Business Development</span></li>
+      <li><span class="period">~2010-2012</span><span>미국 펜실베니아 하원 선거 캠페인 (Field Director) → Matt Cartwright 하원의원 Communications Manager</span></li>
+      <li><span class="period">2013-2018</span><span>Stripe (초기 멤버) — Risk Program Manager → Risk Manager</span></li>
+      <li><span class="period">2018-2020</span><span>OpenAI, VP of Safety and Policy / VP of People</span></li>
+      <li><span class="period">2021.02-현재</span><span>Anthropic, Co-Founder & President</span></li>
+    </ul>
+  </div>
+
+  <!-- JARED KAPLAN -->
+  <div class="profile">
+    <div class="profile-header">
+      <div class="profile-name">Jared Kaplan</div>
+      <div class="profile-role">Co-Founder · CSO · RSO</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd><span class="verify">출생연도 확인 불가</span></dd>
+      <dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/jared-kaplan-645843213/">linkedin.com/in/jared-kaplan-645843213</a></dd>
+    </dl>
+    <span class="profile-sec-label">학력</span>
+    <ul class="career-list">
+      <li><span class="period">~2005</span><span>Stanford University, B.S. Physics & Mathematics</span></li>
+      <li><span class="period">2005-2009</span><span>Harvard University, Ph.D. Theoretical Physics (Hertz Fellow). 학위논문: "Aspects of Holography" (지도교수: Nima Arkani-Hamed)</span></li>
+    </ul>
+    <span class="profile-sec-label">경력</span>
+    <ul class="career-list">
+      <li><span class="period">2012-현재</span><span>Johns Hopkins University, Associate Professor (현재까지 겸직)</span></li>
+      <li><span class="period">~2019-2020</span><span>OpenAI, 협력 연구 (Scaling Laws, GPT-3, Codex 공헌)</span></li>
+      <li><span class="period">2021-현재</span><span>Anthropic, Co-Founder & CSO (2024.10부터 Responsible Scaling Officer 겸직)</span></li>
+    </ul>
+  </div>
+
+  <!-- JACK CLARK -->
+  <div class="profile">
+    <div class="profile-header">
+      <div class="profile-name">Jack Clark</div>
+      <div class="profile-role">Co-Founder · Head of Policy</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd>영국 Brighton 출생 <span class="uncertain">출생연도 확인 불가</span></dd>
+      <dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/jack-clark-5a320317/">linkedin.com/in/jack-clark-5a320317</a></dd>
+    </dl>
+    <span class="profile-sec-label">학력</span>
+    <ul class="career-list">
+      <li><span class="period">2009</span><span>University of East Anglia (영국), B.A. English Literature with Creative Writing</span></li>
+    </ul>
+    <span class="profile-sec-label">경력</span>
+    <ul class="career-list">
+      <li><span class="period">~2010s 초</span><span>The Register, Distributed Systems Reporter</span></li>
+      <li><span class="period">~2013-2016</span><span>Bloomberg News, Google/AI Reporter</span></li>
+      <li><span class="period">2016-2020</span><span>OpenAI, Strategy & Communications → Policy Director</span></li>
+      <li><span class="period">2021-현재</span><span>Anthropic, Co-Founder & Head of Policy. 2026.03부터 Anthropic Institute 리드</span></li>
+    </ul>
+    <span class="profile-sec-label">기타</span>
+    <p style="font-size:13px;margin-bottom:0;">"Import AI" 뉴스레터(주 7만 구독), Stanford AI Index 공동위원장, OECD AI 워킹그룹 공동위원장, NAIAC 위원.</p>
+  </div>
+
+  <!-- BEN MANN -->
+  <div class="profile">
+    <div class="profile-header">
+      <div class="profile-name">Benjamin Mann</div>
+      <div class="profile-role">Co-Founder · Anthropic Labs 공동 리드</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd><span class="verify">출생연도 확인 불가</span></dd>
+      <dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/benjamin-mann">linkedin.com/in/benjamin-mann</a></dd>
+    </dl>
+    <span class="profile-sec-label">학력</span>
+    <ul class="career-list">
+      <li><span class="period">학사</span><span>Columbia University, Computer Science <span class="uncertain">졸업연도 미상</span></span></li>
+    </ul>
+    <span class="profile-sec-label">경력</span>
+    <ul class="career-list">
+      <li><span class="period">초기</span><span>Machine Intelligence Research Institute (MIRI) 등</span></li>
+      <li><span class="period">~2010s 중후반</span><span>Google, Senior Software Engineer (Waze Carpool 등)</span></li>
+      <li><span class="period">~2018-2020</span><span>OpenAI, Member of Technical Staff (GPT-3 핵심 아키텍트)</span></li>
+      <li><span class="period">2021-현재</span><span>Anthropic, Co-Founder & MTS → Product Engineering Tech Lead</span></li>
+      <li><span class="period">2026.01-현재</span><span>Anthropic Labs 공동 리드 (Mike Krieger와 함께)</span></li>
+    </ul>
+  </div>
+
+  <!-- SAM McCANDLISH -->
+  <div class="profile">
+    <div class="profile-header">
+      <div class="profile-name">Sam McCandlish</div>
+      <div class="profile-role">Co-Founder · Chief Architect (前 CTO)</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd><span class="verify">출생연도 확인 불가</span></dd>
+      <dt>LinkedIn</dt><dd><span class="verify">URL 확인 필요</span></dd>
+    </dl>
+    <span class="profile-sec-label">학력 · 경력 요약</span>
+    <p style="font-size:13px;margin-bottom:0;">이론물리학 박사 (Stanford 또는 동급 추정 <span class="uncertain">정확한 학교 확인 필요</span>). OpenAI 시절 Dario·Jared와 Scaling Laws 논문 공저. 2021 Anthropic 공동창업 후 CTO 역임 → 2025.10 Chief Architect로 이동하여 사전훈련·대규모 모델 훈련 집중. Daniela Amodei 직속 보고.</p>
+  </div>
+
+  <!-- TOM BROWN -->
+  <div class="profile">
+    <div class="profile-header">
+      <div class="profile-name">Tom Brown</div>
+      <div class="profile-role">Co-Founder · Chief Compute Officer</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd><span class="verify">출생연도 확인 불가</span></dd>
+      <dt>학력</dt><dd>MIT, M.Eng <span class="uncertain">정확한 전공·연도 미상</span></dd>
+      <dt>LinkedIn</dt><dd><span class="verify">URL 확인 필요</span></dd>
+    </dl>
+    <span class="profile-sec-label">경력 요약</span>
+    <p style="font-size:13px;margin-bottom:0;">OpenAI GPT-3 Lead Engineer. "Language Models are Few-Shot Learners" (GPT-3 논문)의 1저자. 2021년 Anthropic 공동창업. 현재 컴퓨팅 인프라·하드웨어 전략 총괄 ($80B 클라우드 협상 핵심).</p>
+  </div>
+
+  <!-- CHRIS OLAH -->
+  <div class="profile">
+    <div class="profile-header">
+      <div class="profile-name">Chris Olah</div>
+      <div class="profile-role">Co-Founder · Mechanistic Interpretability Lead</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd><span class="verify">출생연도 확인 불가</span></dd>
+      <dt>학력</dt><dd><span class="verify">정규 학위 비공개</span> (독학파로 알려짐)</dd>
+      <dt>LinkedIn</dt><dd><span class="verify">URL 확인 필요</span></dd>
+    </dl>
+    <span class="profile-sec-label">경력 요약</span>
+    <p style="font-size:13px;margin-bottom:0;">Google Brain → OpenAI 거쳐 2021년 Anthropic 공동창업. Distill.pub 공동창업자. AI 해석가능성(Mechanistic Interpretability) 연구의 세계적 권위자. Anthropic 안전 연구의 기술적 핵심. 논문 인용 수 업계 최상위권.</p>
+  </div>
+
+  <!-- MIKE KRIEGER -->
+  <div class="profile">
+    <div class="profile-header">
+      <div class="profile-name">Mike Krieger (Michel Krieger)</div>
+      <div class="profile-role">前 CPO → Anthropic Labs 공동 리드</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd>1986년 3월 4일, 브라질 상파울루</dd>
+      <dt>국적</dt><dd>브라질·미국 (2004년 미국 이주)</dd>
+      <dt>배우자</dt><dd>Kaitlyn Trigger (2015년 결혼)</dd>
+      <dt>LinkedIn</dt><dd><span class="verify">공개 프로필 확인 불가</span></dd>
+    </dl>
+    <span class="profile-sec-label">학력</span>
+    <ul class="career-list">
+      <li><span class="period">2004-2008</span><span>Stanford University, B.S. Symbolic Systems</span></li>
+      <li><span class="period">~2008</span><span>Stanford University, M.S. Symbolic Systems</span></li>
+    </ul>
+    <span class="profile-sec-label">경력</span>
+    <ul class="career-list">
+      <li><span class="period">2010-2018</span><span>Instagram, Co-Founder & CTO. 2012년 Facebook에 약 $1B 매각</span></li>
+      <li><span class="period">2020-2024</span><span>Artifact (AI 뉴스 앱) Co-Founder. 2024년 Yahoo 매각</span></li>
+      <li><span class="period">2024.05-2026.01</span><span>Anthropic, Chief Product Officer (CPO)</span></li>
+      <li><span class="period">2026.01-현재</span><span>Anthropic Labs 공동 리드 (MTS, Daniela Amodei 직속)</span></li>
+      <li><span class="period">2025.07-현재</span><span>Figma 이사회 (겸직)</span></li>
+    </ul>
+  </div>
+
+  <!-- KRISHNA RAO -->
+  <div class="profile">
+    <div class="profile-header">
+      <div class="profile-name">Krishna Rao</div>
+      <div class="profile-role">Chief Financial Officer (2024.5~, 첫 CFO)</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd><span class="verify">출생연도 확인 불가</span> (2005년 학사로 ~40대 초중반 추정)</dd>
+      <dt>국적</dt><dd>인도계 미국인</dd>
+      <dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/krishna-rao-193b613/">linkedin.com/in/krishna-rao-193b613</a></dd>
+    </dl>
+    <span class="profile-sec-label">학력</span>
+    <ul class="career-list">
+      <li><span class="period">2005</span><span>Harvard College, A.B. Economics, Summa Cum Laude</span></li>
+      <li><span class="period">2011</span><span>Yale Law School, J.D.</span></li>
+    </ul>
+    <span class="profile-sec-label">경력</span>
+    <ul class="career-list">
+      <li><span class="period">~2005-2008</span><span>Bain & Company, Strategy Consultant</span></li>
+      <li><span class="period">~2011-2015</span><span>Blackstone, Private Equity Group Principal (NY). Crocs $200M 투자 등 주도</span></li>
+      <li><span class="period">2015-2021</span><span>Airbnb, Finance Director → Global Head of Corporate & Business Development. $10B+ 자금 조달 및 IPO ($47B) 주도</span></li>
+      <li><span class="period">2021-2023</span><span>Cedar (헬스케어 페이먼트), CFO</span></li>
+      <li><span class="period">2023-2024.04</span><span>Fanatics Commerce, CFO</span></li>
+      <li><span class="period">2024.05-현재</span><span>Anthropic, 첫 CFO (Series G $30B 조달 주도)</span></li>
+    </ul>
+  </div>
+
+  <!-- PAUL SMITH -->
+  <div class="profile">
+    <div class="profile-header">
+      <div class="profile-name">Paul Smith</div>
+      <div class="profile-role">Chief Commercial Officer (2025.8~, 첫 CCO)</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd><span class="verify">출생연도 확인 불가</span> (30년 경력 → 50대 추정)</dd>
+      <dt>국적</dt><dd>영국 (현재 뉴욕 거주)</dd>
+      <dt>LinkedIn</dt><dd><span class="verify">URL 확인 필요</span></dd>
+    </dl>
+    <span class="profile-sec-label">학력</span>
+    <ul class="career-list">
+      <li><span class="period">학사</span><span>University of Plymouth (영국), Geography (Climate Change 전공) <span class="uncertain">졸업연도 미상</span></span></li>
+    </ul>
+    <span class="profile-sec-label">경력</span>
+    <ul class="career-list">
+      <li><span class="period">초기</span><span>Procter & Gamble, Morse, Yospace, Microsoft, Umee, Techlightenment</span></li>
+      <li><span class="period">2012.03-2020.07</span><span>Salesforce, EVP UK GM → EVP EMEA (Marketing Cloud 등)</span></li>
+      <li><span class="period">2020.07-2025.09</span><span>ServiceNow, President Global Customer & Field Ops → CCO → Special Advisor. $4B → $12B+ 견인</span></li>
+      <li><span class="period">2025.08-현재</span><span>Anthropic, 첫 CCO (Sales, Partnerships, Revenue Ops, Marketing 총괄)</span></li>
+    </ul>
+  </div>
+
+  <!-- RAHUL PATIL -->
+  <div class="profile">
+    <div class="profile-header">
+      <div class="profile-name">Rahul Patil</div>
+      <div class="profile-role">Chief Technology Officer (2025.10~)</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd>인도 Bengaluru 태생 <span class="verify">출생연도 확인 불가</span></dd>
+      <dt>LinkedIn</dt><dd><span class="verify">URL 확인 필요</span></dd>
+    </dl>
+    <span class="profile-sec-label">학력</span>
+    <ul class="career-list">
+      <li><span class="period">학사</span><span>PES University (인도 Bengaluru), B.S. Computer Science</span></li>
+      <li><span class="period">석사</span><span>Arizona State University, M.S. <span class="uncertain">전공 미상</span></span></li>
+      <li><span class="period">MBA</span><span>University of Washington, Foster School of Business, MBA</span></li>
+    </ul>
+    <span class="profile-sec-label">경력</span>
+    <ul class="career-list">
+      <li><span class="period">초기</span><span>Microsoft Azure, Engineering Lead</span></li>
+      <li><span class="period">~2010s 초</span><span>Amazon Web Services (AWS), Senior Engineering Leader</span></li>
+      <li><span class="period">2015.07-2020.03</span><span>Oracle Cloud Infrastructure, Senior Vice President</span></li>
+      <li><span class="period">2020-2025.09</span><span>Stripe, CTO (Global Engineering & Operations)</span></li>
+      <li><span class="period">2025.10-현재</span><span>Anthropic, CTO (Compute, Infrastructure, Inference, Product Engineering 총괄)</span></li>
+    </ul>
+  </div>
+
+  <!-- AMI VORA -->
+  <div class="profile">
+    <div class="profile-header">
+      <div class="profile-name">Ami Vora</div>
+      <div class="profile-role">Head of Product (2026.1~)</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd><span class="verify">출생연도 확인 불가</span></dd>
+      <dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/amvora/">linkedin.com/in/amvora</a></dd>
+    </dl>
+    <span class="profile-sec-label">학력</span>
+    <ul class="career-list">
+      <li><span class="period">학사</span><span>Harvard University, B.A. Computer Science <span class="uncertain">졸업연도 미상</span></span></li>
+    </ul>
+    <span class="profile-sec-label">경력</span>
+    <ul class="career-list">
+      <li><span class="period">초기</span><span>Microsoft, Developer Tools 담당으로 커리어 시작</span></li>
+      <li><span class="period">2007-2022</span><span>Facebook/Meta 15년 — PR 인턴 → Facebook Mobile / Ads VP → WhatsApp VP of Product & Design (20억+ 유저)</span></li>
+      <li><span class="period">2022-~2024</span><span>Faire, Chief Product Officer (CPO)</span></li>
+      <li><span class="period">~2024-2025</span><span>약 1년 안식년</span></li>
+      <li><span class="period">2026.01-현재</span><span>Anthropic, Head of Product</span></li>
+      <li><span class="period">2025~</span><span>Datadog 이사회 (겸직)</span></li>
+    </ul>
+  </div>
+
+  <!-- CHRIS CIAURI -->
+  <div class="profile">
+    <div class="profile-header">
+      <div class="profile-name">Chris Ciauri</div>
+      <div class="profile-role">Managing Director, International (2025.10~)</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd><span class="verify">출생연도 확인 불가</span> (25년+ 경력 → 50대 추정)</dd>
+      <dt>거주지</dt><dd>영국</dd>
+      <dt>LinkedIn</dt><dd><a href="https://uk.linkedin.com/in/cciauri">uk.linkedin.com/in/cciauri</a></dd>
+    </dl>
+    <span class="profile-sec-label">학력</span>
+    <ul class="career-list">
+      <li><span class="period">대학원</span><span>Thunderbird School of Global Management (ASU 산하) <span class="uncertain">졸업연도 미상</span></span></li>
+    </ul>
+    <span class="profile-sec-label">경력</span>
+    <ul class="career-list">
+      <li><span class="period">초기</span><span>PeopleSoft (現 Oracle), E.piphany, Adobe — 시니어 리더십</span></li>
+      <li><span class="period">중간</span><span>Valen Technologies, Hydropoint Data Systems — 스타트업 리더십</span></li>
+      <li><span class="period">~2010-2020</span><span>Salesforce, EVP & GM EMEA (10년). EMEA 매출 $200M → $3B+ 성장 견인. 직원 300명 → 6,000명+</span></li>
+      <li><span class="period">~2021-2023</span><span>Google Cloud, President of EMEA (런던·더블린)</span></li>
+      <li><span class="period">2023.06-2025</span><span>Unily (영국 사내 직원경험 플랫폼), CEO</span></li>
+      <li><span class="period">2025.10-현재</span><span>Anthropic, MD International</span></li>
+    </ul>
+  </div>
+
+  <!-- HIDETOSHI TOJO -->
+  <div class="profile">
+    <div class="profile-header">
+      <div class="profile-name">Hidetoshi Tojo (東城 秀俊)</div>
+      <div class="profile-role">Head of Japan / 대표집행역사장 (2025.11~)</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd><span class="verify">출생연도 확인 불가</span> (1996년 사회 진출 → 50대 초중반 추정)</dd>
+      <dt>거주지</dt><dd>일본 도쿄</dd>
+      <dt>LinkedIn / X</dt><dd>X: @HidetoshiTojo</dd>
+    </dl>
+    <span class="profile-sec-label">학력</span>
+    <ul class="career-list">
+      <li><span class="period">2011-2013</span><span>University of Washington, Foster School of Business, MBA</span></li>
+      <li><span class="period">학사</span><span><span class="verify">학사 학교 확인 불가</span></span></li>
+    </ul>
+    <span class="profile-sec-label">경력</span>
+    <ul class="career-list">
+      <li><span class="period">1996~</span><span>JustSystems, Sales (커리어 시작) <span class="uncertain">정확한 연도 미상</span></span></li>
+      <li><span class="period">중간</span><span>Microsoft (US 본사 및 일본 법인), Sales & Marketing 장기 재직</span></li>
+      <li><span class="period">중간</span><span>Google Cloud Japan, 리더십</span></li>
+      <li><span class="period">~2020-2025</span><span>Snowflake Japan, Country Manager / President (런칭부터 성장 주도)</span></li>
+      <li><span class="period">2025.11-현재</span><span>Anthropic Japan, Head of Japan / 대표집행역사장</span></li>
+    </ul>
+  </div>
+
+  <!-- IRINA GHOSE -->
+  <div class="profile">
+    <div class="profile-header">
+      <div class="profile-name">Irina Ghose</div>
+      <div class="profile-role">Managing Director, India (2026.1~)</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd><span class="verify">출생연도 확인 불가</span> (Microsoft 2001년 입사 → 50대 추정)</dd>
+      <dt>거주지</dt><dd>인도 Bengaluru</dd>
+      <dt>LinkedIn</dt><dd><span class="verify">URL 확인 필요</span></dd>
+    </dl>
+    <span class="profile-sec-label">학력</span>
+    <ul class="career-list">
+      <li><span class="period">학사</span><span>Indian Institute of Technology BHU (Varanasi), B.Tech Electrical Engineering</span></li>
+      <li><span class="period">MBA</span><span>XLRI Jamshedpur (Xavier School of Management), MBA Business Management</span></li>
+    </ul>
+    <span class="profile-sec-label">경력</span>
+    <ul class="career-list">
+      <li><span class="period">2001-2025.12</span><span>Microsoft India 24년 재직. Partnerships → Account Management → Enterprise Solutions → Microsoft Redmond 본사 stint → COO India (2022) → Managing Director India (2023.07-2025.12)</span></li>
+      <li><span class="period">2026.01-현재</span><span>Anthropic India, Managing Director (Bengaluru 첫 오피스 개설)</span></li>
+      <li><span class="period">기타</span><span>MyLittleBit 재단 설립 (소외 여아 STEM 교육)</span></li>
+    </ul>
+  </div>
+
+  <!-- CHRIS LIDDELL -->
+  <div class="profile">
+    <div class="profile-header">
+      <div class="profile-name">Chris Liddell (Christopher Pell Liddell)</div>
+      <div class="profile-role">Board of Directors (2026.2~)</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>출생</dt><dd>1958년 4월 24일, 뉴질랜드 Matamata</dd>
+      <dt>국적</dt><dd>미국·뉴질랜드 (이중국적)</dd>
+      <dt>배우자</dt><dd>Renee Harbers Liddell (2011년 결혼)</dd>
+      <dt>LinkedIn</dt><dd><span class="verify">공개 프로필 확인 불가</span> · 개인 사이트: chrisliddell.com</dd>
+    </dl>
+    <span class="profile-sec-label">학력</span>
+    <ul class="career-list">
+      <li><span class="period">~1980</span><span>University of Auckland (뉴질랜드), Bachelor of Engineering (with Honours)</span></li>
+      <li><span class="period">~1982</span><span>Worcester College, Oxford University, M.Phil</span></li>
+      <li><span class="period">현재</span><span>Oxford University, Ph.D. 진행 중</span></li>
+    </ul>
+    <span class="profile-sec-label">경력</span>
+    <ul class="career-list">
+      <li><span class="period">~1990s</span><span>CS First Boston (뉴질랜드), Managing Director</span></li>
+      <li><span class="period">1995-1998</span><span>Carter Holt Harvey (NZ 산림제품), CFO</span></li>
+      <li><span class="period">1999-2002</span><span>Carter Holt Harvey, CEO</span></li>
+      <li><span class="period">2003-2005</span><span>International Paper (미국), CFO</span></li>
+      <li><span class="period">2005-2009.12</span><span>Microsoft, SVP & CFO. ~50건 M&A 주도</span></li>
+      <li><span class="period">2010-2011</span><span>General Motors, Vice Chairman & CFO. GM의 역사적 $23B IPO 주도</span></li>
+      <li><span class="period">2014-2017</span><span>WME-IMG, CFO</span></li>
+      <li><span class="period">2017-2021.01</span><span>백악관 (트럼프 1기): Asst to the President for Strategic Initiatives → American Technology Council Director → Deputy Chief of Staff for Policy Coordination (2018.03~)</span></li>
+      <li><span class="period">2026.02-현재</span><span>Anthropic, Board of Directors</span></li>
+      <li><span class="period">기타 현재</span><span>Commonwealth Fusion Systems 이사, KKR Senior Adviser, Harvard IOP Fellow (2026 봄)</span></li>
+    </ul>
+  </div>
+
+  <!-- HANNAH PRITCHETT -->
+  <div class="profile">
+    <div class="profile-header">
+      <div class="profile-name">Hannah Pritchett</div>
+      <div class="profile-role">Chief People Officer</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>전체 정보</dt><dd><span class="verify">공개 정보 매우 제한적 — 학력·경력·LinkedIn 모두 확인 불가</span></dd>
+    </dl>
+    <p style="font-size:13px;margin-top:0.8rem;margin-bottom:0;">RocketReach 등 비즈니스 데이터베이스에 Anthropic CPO로만 식별. 외부 인터뷰·언론 노출 매우 적음. 정확한 프로필 확인을 위해서는 Anthropic 인사이드 컨택 또는 유료 데이터베이스(The Information Org Chart 등) 활용 필요.</p>
+  </div>
+
+  <!-- JASON CLINTON -->
+  <div class="profile">
+    <div class="profile-header">
+      <div class="profile-name">Jason Clinton</div>
+      <div class="profile-role">Chief Information Security Officer</div>
+    </div>
+    <dl class="profile-meta">
+      <dt>경력</dt><dd>Google 출신 보안 전문가 <span class="uncertain">상세 경력 확인 필요</span></dd>
+      <dt>LinkedIn</dt><dd><span class="verify">URL 확인 필요</span></dd>
+    </dl>
+    <p style="font-size:13px;margin-top:0.8rem;margin-bottom:0;">Anthropic 공식 발표 및 보안 컨퍼런스 등을 통해 CISO로 식별. Claude Security 제품 라인 출시 주도 (DoorDash 등 도입). 상세 학력·경력은 추가 조사 필요.</p>
+  </div>
+
+</section>
+
+</main>
+
+<!-- === FOOTER === -->
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Anthropic Strategic Intelligence Report · 2026.05.20</span>
+    <span>Sources: Anthropic 공식, Wikipedia, Sacra, SignalFire, Epoch AI, VentureBeat, CNBC, TechCrunch, Glassdoor, SaaStr, Ramp AI Index, LinkedIn, Hertz Foundation 등</span>
+    <span>Confidential · 내부 검토용 · Data as of 2026.5</span>
+  </div>
+</footer>
+
+</body>
+</html>
